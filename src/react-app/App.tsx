@@ -10,7 +10,7 @@ import { GrInstagram, GrGoogle } from "react-icons/gr";
 interface ServiceCardProps {
   title: string;
   image: string;
-  link: string;
+  //   link: string;
 }
 
 const ServiceCard = ({ title, image }: ServiceCardProps) => (
@@ -252,28 +252,28 @@ function App() {
                 <ServiceCard
                   title="Manicures"
                   image="/photos/nail 1.jpg"
-                  link=""
+                  //   link=""
                 />
               </div>
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Pedicure"
                   image="/photos/pedicure.png"
-                  link=""
+                  //   link=""
                 />
               </div>
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Eye Brows"
                   image="/photos/eyebrow.png"
-                  link=""
+                  //   link=""
                 />
               </div>
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Lashes"
                   image="/photos/lashes.png"
-                  link=""
+                  //   link=""
                 />
               </div>
             </div>
