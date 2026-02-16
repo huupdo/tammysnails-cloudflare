@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
-import { FiPhone } from "react-icons/fi";
+import { FiPhone, FiMapPin, FiClock } from "react-icons/fi";
 import { GrInstagram, GrGoogle } from "react-icons/gr";
 
 // Reusable Service Card Component
@@ -447,7 +447,61 @@ function App() {
           ref={contactRef}
           className="relative overflow-hidden bg-neutral-50 py-8 dark:bg-neutral-900/50"
           id="contact"
-        ></section>
+        >
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-neutral-100">
+                Contact Us
+              </h2>
+              <p className="mx-auto max-w-2xl text-lg text-gray-700/80 dark:text-neutral-300/80">
+                Ready to experience a new standard of nail care in our boutique
+                nail salon.
+                <br /> Book your appointment today
+              </p>
+            </div>
+            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+              <div className="space-y-6">
+                <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
+                  <div className="mb-6 flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-stone-200 bg-stone-100 dark:border-stone-700 dark:bg-stone-900/50">
+                      <img src="/photos/logo.png" alt="Tammy's Nails Logo" />
+                    </div>
+                    <div>
+                      <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-neutral-100">
+                        Tammy's Nails
+                      </h3>
+                      <p className="text-gray-600 dark:text-neutral-400">
+                        <FiMapPin className="inline-block mr-2" />
+                        <span>907 Churn Crk Rd, Redding, CA 96002</span>
+                      </p>
+                      <p className="text-gray-600 dark:text-neutral-400">
+                        <FiPhone className="inline-block mr-2" /> (530) 226-9462
+                      </p>
+                      <p className="text-gray-600 dark:text-neutral-400">
+                        <FiClock className="inline-block mr-2" /> Mon-Sat: 10AM
+                        - 7PM
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="h-full min-h-75 lg:min-h-100">
+                <div className="h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6061.839582969197!2d-122.35803008412879!3d40.56544847503779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54d2eca38b3997c5%3A0x74ce7f1f02ba2189!2sTammy&#39;s%20Nails%20-%20Nail%20Salon%20Redding%20CA!5e0!3m2!1sen!2sus!4v1770612118403!5m2!1sen!2sus"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    title="map"
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
