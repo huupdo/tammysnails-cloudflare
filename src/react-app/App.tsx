@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react";
 import "./App.css";
-// import PhoneIcon from "./components/PhoneIcon";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { FiPhone } from "react-icons/fi";
 
