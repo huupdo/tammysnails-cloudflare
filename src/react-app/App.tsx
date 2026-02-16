@@ -186,7 +186,32 @@ function App() {
         <section
           className="relative isolate flex min-h-screen items-start justify-start overflow-hidden pt-32"
           id="home"
-        ></section>
+        >
+          <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+            <div className="absolute -top-32 -left-32 h-[60vh] w-[60vh] rounded-full bg-linear-to-br from-stone-200 via-stone-100 to-stone-300 opacity-20 blur-2xl dark:opacity-0"></div>
+            <div className="absolute right-10 -bottom-20 h-[40vh] w-[50vh] rounded-full bg-linear-to-br from-stone-300 via-stone-200 to-stone-100 opacity-40 blur-3xl dark:opacity-0"></div>
+            <div className="absolute top-28 left-1/4 h-[35vh] w-[45vh] rounded-full bg-linear-to-br from-stone-300 via-stone-200 to-stone-100 opacity-60 blur-3xl dark:h-[28vh] dark:from-stone-600 dark:via-stone-500 dark:to-stone-400 dark:opacity-20"></div>
+          </div>
+          <div className="absolute inset-0 -z-20">
+            <img
+              alt="Beautiful nails gel"
+              src="/photos/bg.png"
+              className="h-full w-full object-cover blur-xs"
+            />
+            <div className="absolute inset-0 bg-white/40 dark:bg-neutral-400/30"></div>
+          </div>
+          <div className="relative z-10 max-w-3xl px-6 py-10 text-left">
+            <div className="mb-4">
+              <span className="px-4 py-2 font-serif text-3xl leading-tight md:text-4xl">
+                Welcome to Tammy's
+              </span>
+            </div>
+            <h1 className="mb-8 font-serif text-2xl text-yellow-600 italic md:text-5xl dark:text-stone-200">
+              Experience premium nail care with non-toxic products and trending
+              styles tailored to you.
+            </h1>
+          </div>
+        </section>
 
         {/* services grid */}
         <section
