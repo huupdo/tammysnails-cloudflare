@@ -13,7 +13,7 @@ interface ServiceCardProps {
   link: string;
 }
 
-const ServiceCard = ({ title, image, link }: ServiceCardProps) => (
+const ServiceCard = ({ title, image }: ServiceCardProps) => (
   <div className="group cursor-pointer overflow-hidden rounded-2xl bg-white">
     <div className="aspect-4/5 overflow-hidden">
       <img
