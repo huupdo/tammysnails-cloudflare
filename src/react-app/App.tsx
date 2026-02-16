@@ -108,6 +108,7 @@ function App() {
                   href="tel:+15302269462"
                   className="hidden rounded-lg bg-stone-900 px-6 py-2 text-[11px] font-bold tracking-widest text-white uppercase transition hover:bg-stone-700 md:block"
                 >
+                  <FiPhone className="inline-block mr-2" />
                   Call to Book
                 </a>
 
