@@ -502,6 +502,24 @@ function App() {
             </div>
           </div>
         </section>
+        <footer className="border-t border-neutral-800 bg-neutral-900 py-8 text-gray-300 dark:border-neutral-900 dark:bg-neutral-950 dark:text-neutral-400">
+          <div className="flex items-center justify-center gap-4 text-sm text-gray-500 md:flex-row dark:text-neutral-600">
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              ©2018 Tammy's Nails. All Rights Reserved.
+            </p>
+            {/* <div class="flex gap-6">
+            <a href="/home" class="transition-colors hover:text-stone-400 dark:hover:text-stone-400">
+              Privacy Policy
+            </a>
+            <a href="/home" class="transition-colors hover:text-stone-400 dark:hover:text-stone-400">
+              Terms of Service
+            </a>
+            <a href="/home" class="transition-colors hover:text-stone-400 dark:hover:text-stone-400">
+              Cookie Policy
+            </a>
+          </div> */}
+          </div>
+        </footer>
       </div>
     </>
   );
