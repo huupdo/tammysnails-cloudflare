@@ -272,7 +272,7 @@ function App() {
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Kids' Services"
-                  image="/photos/8._Blue_White_Swirl_Sophistication_-_Elegant_Nail_Art_Ideas.jpg"
+                  image="/photos/kids nails.png"
                   //   link=""
                 />
               </div>
