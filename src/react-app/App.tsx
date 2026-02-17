@@ -472,14 +472,14 @@ function App() {
                       </h3>
                       <p className="text-gray-600 dark:text-neutral-400">
                         <FiMapPin className="inline-block mr-2" />
-                        <span>907 Churn Crk Rd, Redding, CA 96002</span>
+                        <span>2907 Churn Crk Rd, Redding, CA 96002</span>
                       </p>
                       <p className="text-gray-600 dark:text-neutral-400">
                         <FiPhone className="inline-block mr-2" /> (530) 226-9462
                       </p>
                       <p className="text-gray-600 dark:text-neutral-400">
-                        <FiClock className="inline-block mr-2" /> Mon-Sat: 10AM
-                        - 7PM
+                        <FiClock className="inline-block mr-2" /> Mon-Sat: 9AM -
+                        7PM
                       </p>
                     </div>
                   </div>
