@@ -82,13 +82,13 @@ function App() {
               {/* Desktop Menu */}
               <div className="hidden items-center gap-4 md:flex">
                 <button
-                  className="btn rounded-lg px-3 py-2 text-lg font-medium text-gray-700 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-neutral-300 dark:hover:bg-stone-900/30 dark:hover:text-stone-300"
+                  className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
                   onClick={() => window.scroll({ top: 0, behavior: "smooth" })}
                 >
                   Home
                 </button>
                 <button
-                  className="btn rounded-lg px-3 py-2 text-lg font-medium text-gray-700 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-neutral-300 dark:hover:bg-stone-900/30 dark:hover:text-stone-300"
+                  className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
                   onClick={() => {
                     servicesRef.current?.scrollIntoView({
                       behavior: "smooth",
@@ -98,7 +98,7 @@ function App() {
                   Services
                 </button>
                 <button
-                  className="btn rounded-lg px-3 py-2 text-lg font-medium text-gray-700 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-neutral-300 dark:hover:bg-stone-900/30 dark:hover:text-stone-300"
+                  className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
                   onClick={() => {
                     galleryRef.current?.scrollIntoView({
                       behavior: "smooth",
@@ -108,7 +108,7 @@ function App() {
                   Gallery
                 </button>
                 <button
-                  className="btn rounded-lg px-3 py-2 text-lg font-medium text-gray-700 transition-colors hover:bg-stone-50 hover:text-stone-700 dark:text-neutral-300 dark:hover:bg-stone-900/30 dark:hover:text-stone-300"
+                  className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
                   onClick={() => {
                     contactRef.current?.scrollIntoView({
                       behavior: "smooth",
@@ -122,7 +122,7 @@ function App() {
               <div className="flex flex-1 items-center justify-end gap-4">
                 <a
                   href="tel:+15302269462"
-                  className="hidden rounded-lg bg-stone-900 px-6 py-2 text-[11px] font-bold tracking-widest text-white uppercase transition hover:bg-stone-700 md:block"
+                  className="hidden rounded-lg bg-amber-900 px-6 py-2 text-md font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700 md:block"
                 >
                   <FiPhone className="inline-block mr-2" />
                   Call to Book
@@ -148,7 +148,7 @@ function App() {
             {isMenuOpen && (
               <div className="mt-4 flex flex-col items-center gap-4 border-t border-neutral-200 pt-4 pb-4 md:hidden dark:border-neutral-800">
                 <button
-                  className="text-lg font-medium text-gray-700 dark:text-neutral-300"
+                  className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
                     setIsMenuOpen(false);
                     window.scroll({ top: 0, behavior: "smooth" });
@@ -157,7 +157,7 @@ function App() {
                   Home
                 </button>
                 <button
-                  className="text-lg font-medium text-gray-700 dark:text-neutral-300"
+                  className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
                     setIsMenuOpen(false);
                     servicesRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -166,7 +166,7 @@ function App() {
                   Services
                 </button>
                 <button
-                  className="text-lg font-medium text-gray-700 dark:text-neutral-300"
+                  className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
                     setIsMenuOpen(false);
                     galleryRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -175,7 +175,7 @@ function App() {
                   Gallery
                 </button>
                 <button
-                  className="text-lg font-medium text-gray-700 dark:text-neutral-300"
+                  className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
                     setIsMenuOpen(false);
                     contactRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -185,7 +185,7 @@ function App() {
                 </button>
                 <a
                   href="tel:+15302269462"
-                  className="w-full bg-stone-900 px-6 py-2 text-center text-[11px] font-bold tracking-widest text-white uppercase transition hover:bg-stone-700"
+                  className="w-full bg-amber-900 px-6 py-2 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
                 >
                   {/* <PhoneIcon /> Call to Book */}
                   <FiPhone
@@ -238,7 +238,7 @@ function App() {
         >
           <div className="mx-auto max-w-7xl px-6">
             <div className="mb-8 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-neutral-100">
+              <h2 className="mb-4 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
                 Our Services
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-gray-700/80 dark:text-neutral-300/80">
@@ -288,7 +288,7 @@ function App() {
         >
           <div className="mx-auto max-w-7xl px-6">
             <div className="mb-8 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-neutral-100">
+              <h2 className="mb-4 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
                 Our Gallery
               </h2>
               <div className="mt-6 flex items-center justify-center gap-6">
@@ -450,7 +450,7 @@ function App() {
         >
           <div className="mx-auto max-w-5xl px-6">
             <div className="mb-16 text-center">
-              <h2 className="mb-4 text-4xl font-bold text-gray-900 md:text-5xl dark:text-neutral-100">
+              <h2 className="mb-4 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
                 Contact Us
               </h2>
               <p className="mx-auto max-w-2xl text-lg text-gray-700/80 dark:text-neutral-300/80">
