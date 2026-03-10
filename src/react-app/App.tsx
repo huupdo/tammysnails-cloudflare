@@ -70,7 +70,7 @@ function App() {
               <div className="flex flex-1 shrink-0 justify-start">
                 <div className="text-2xl font-bold text-stone-700 dark:text-stone-300">
                   <img
-                    src="/photos/logo.png"
+                    src="/photos/logo.webp"
                     alt="Tammy's Nails Logo"
                     className="h-16 w-auto md:h-20"
                   />
@@ -212,7 +212,7 @@ function App() {
           <div className="absolute inset-0 -z-20">
             <img
               alt="Beautiful nails gel"
-              src="/photos/bg.png"
+              src="/photos/bg.webp"
               className="h-full w-full object-cover blur-xs"
             />
             <div className="absolute inset-0 bg-white/40 dark:bg-neutral-400/30"></div>
@@ -251,28 +251,28 @@ function App() {
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Manicures"
-                  image="/photos/nail 1.jpg"
+                  image="/photos/nail 1.webp"
                   //   link=""
                 />
               </div>
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Pedicure"
-                  image="/photos/pedicure.png"
+                  image="/photos/pedicure.webp"
                   //   link=""
                 />
               </div>
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Waxing"
-                  image="/photos/eyebrow.png"
+                  image="/photos/eyebrow.webp"
                   //   link=""
                 />
               </div>
               <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
                 <ServiceCard
                   title="Kids' Services"
-                  image="/photos/kids nails.png"
+                  image="/photos/kids nails.webp"
                   //   link=""
                 />
               </div>
@@ -327,7 +327,7 @@ function App() {
                   <div className="relative min-w-full">
                     <img
                       alt="Gallery Image 1"
-                      src="/photos/gallery 1.png"
+                      src="/photos/gallery 1.webp"
                       className="h-100 w-full object-cover md:h-150"
                     />
                     {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
@@ -340,8 +340,9 @@ function App() {
                   <div className="relative min-w-full">
                     <img
                       alt="Gallery Image 2"
-                      src="/photos/gallery 2.jpg"
+                      src="/photos/gallery 2.webp"
                       className="h-100 w-full object-cover md:h-150"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
                       {/* <div className="p-8">
@@ -353,8 +354,9 @@ function App() {
                   <div className="relative min-w-full">
                     <img
                       alt="Gallery Image 3"
-                      src="/photos/gallery 3.png"
+                      src="/photos/gallery 3.webp"
                       className="h-100 w-full object-cover md:h-150"
+                      loading="lazy"
                     />
                     {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
                     <div className="p-8">
@@ -366,8 +368,9 @@ function App() {
                   <div className="relative min-w-full">
                     <img
                       alt="Gallery Image 4"
-                      src="/photos/gallery 4.png"
+                      src="/photos/gallery 4.webp"
                       className="hfull object-cover md:h-150"
+                      loading="lazy"
                     />
                     {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
                     <div className="p-8">
@@ -379,8 +382,9 @@ function App() {
                   <div className="relative min-w-full">
                     <img
                       alt="Gallery Image 5"
-                      src="/photos/gallery 5.png"
+                      src="/photos/gallery 5.webp"
                       className="h-full object-center md:h-150"
+                      loading="lazy"
                     />
                     {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
                     <div className="p-8">
@@ -464,7 +468,7 @@ function App() {
                 <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
                   <div className="mb-6 flex items-start gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-stone-200 bg-stone-100 dark:border-stone-700 dark:bg-stone-900/50">
-                      <img src="/photos/logo.png" alt="Tammy's Nails Logo" />
+                      <img src="/photos/logo.webp" alt="Tammy's Nails Logo" />
                     </div>
                     <div>
                       <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-neutral-100">
