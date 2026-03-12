@@ -201,7 +201,7 @@ function App() {
 
         {/* hero section */}
         <section
-          className="relative isolate flex min-h-screen items-start justify-start overflow-hidden pt-32"
+          className="relative isolate flex min-h-screen items-start justify-start overflow-hidden pt-16"
           id="home"
         >
           <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -217,16 +217,19 @@ function App() {
             />
             <div className="absolute inset-0 bg-white/40 dark:bg-neutral-400/30"></div>
           </div>
-          <div className="relative z-10 max-w-3xl px-6 py-10 text-left">
+          <div className="relative z-10 max-w-5xl px-6 py-10 text-left">
             <div className="mb-4">
-              <span className="px-4 py-2 font-serif text-3xl leading-tight md:text-4xl">
-                Welcome to Tammy's
+              <span className="px-4 py-2 font-pacifico text-3xl leading-tight text-stone-700 md:text-4xl dark:text-stone-100">
+                Welcome to
               </span>
+              <h1 className="font-raleway text-5xl font-semibold tracking-widest text-amber-950 uppercase md:text-7xl dark:text-stone-100 [text-shadow:0_2px_12px_rgba(120,60,10,0.25)] dark:[text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
+                Tammy's Nails Salon
+              </h1>
             </div>
-            <h1 className="mb-8 font-serif text-2xl text-yellow-600 italic md:text-5xl dark:text-stone-200">
+            <h2 className="mb-8 font-raleway text-2xl text-stone-800 md:text-4xl dark:text-stone-100">
               Experience premium nail care with non-toxic products and trending
               styles tailored to you.
-            </h1>
+            </h2>
           </div>
         </section>
 
