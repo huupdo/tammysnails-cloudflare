@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
-import { FiPhone, FiMapPin, FiClock } from "react-icons/fi";
+import { FiPhone, FiMapPin, FiClock, FiMail } from "react-icons/fi";
 import { GrInstagram, GrGoogle } from "react-icons/gr";
 
 // Reusable Service Card Component
@@ -187,7 +187,6 @@ function App() {
                   href="tel:+15302269462"
                   className="w-full bg-amber-900 px-6 py-2 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
                 >
-                  {/* <PhoneIcon /> Call to Book */}
                   <FiPhone
                     className="inline-block mr-2 text-red-100"
                     color="red"
@@ -217,13 +216,13 @@ function App() {
             />
             <div className="absolute inset-0 bg-white/40 dark:bg-neutral-400/30"></div>
           </div>
-          <div className="relative z-10 max-w-5xl px-6 py-10 text-left">
+          <div className="relative z-10 max-w-4xl px-6 py-10 text-left">
             <div className="mb-4">
               <span className="px-4 py-2 font-pacifico text-3xl leading-tight text-stone-700 md:text-4xl dark:text-stone-100">
                 Welcome to
               </span>
-              <h1 className="font-raleway text-5xl font-semibold tracking-widest text-amber-950 uppercase md:text-7xl dark:text-stone-100 [text-shadow:0_2px_12px_rgba(120,60,10,0.25)] dark:[text-shadow:0_2px_12px_rgba(0,0,0,0.5)]">
-                Tammy's Nails Salon
+              <h1 className="font-raleway text-5xl font-semibold tracking-widest text-amber-950 uppercase md:text-7xl dark:text-stone-100 [text-shadow:0_2px_12px_rgba(120,60,10,0.25)] dark:[text-shadow:0_2px_12px_rgba(0,0,0,0.25)]">
+                Tammy's Nails
               </h1>
             </div>
             <h2 className="mb-8 font-raleway text-2xl text-stone-800 md:text-4xl dark:text-stone-100">
@@ -333,12 +332,6 @@ function App() {
                       src="/photos/gallery 1.webp"
                       className="h-100 w-full object-cover md:h-150"
                     />
-                    {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
-                    <div className="p-8">
-                      <h3 className="mb-2 text-2xl font-bold text-white">Innovative Web Platform</h3>
-                      <p className="text-sm text-gray-200">E-commerce solution with advanced features</p>
-                    </div>
-                  </div> */}
                   </div>
                   <div className="relative min-w-full">
                     <img
@@ -347,12 +340,7 @@ function App() {
                       className="h-100 w-full object-cover md:h-150"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
-                      {/* <div className="p-8">
-                      <h3 className="mb-2 text-2xl font-bold text-white">Mobile App Design</h3>
-                      <p className="text-sm text-gray-200">Beautiful interface for productivity app</p>
-                    </div> */}
-                    </div>
+                    <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent"></div>
                   </div>
                   <div className="relative min-w-full">
                     <img
@@ -361,12 +349,6 @@ function App() {
                       className="h-100 w-full object-cover md:h-150"
                       loading="lazy"
                     />
-                    {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
-                    <div className="p-8">
-                      <h3 className="mb-2 text-2xl font-bold text-white">Corporate Branding</h3>
-                      <p className="text-sm text-gray-200">Complete brand identity and website redesign</p>
-                    </div>
-                  </div> */}
                   </div>
                   <div className="relative min-w-full">
                     <img
@@ -375,12 +357,6 @@ function App() {
                       className="hfull object-cover md:h-150"
                       loading="lazy"
                     />
-                    {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
-                    <div className="p-8">
-                      <h3 className="mb-2 text-2xl font-bold text-white">Cloud Infrastructure</h3>
-                      <p className="text-sm text-gray-200">Scalable cloud migration and deployment</p>
-                    </div>
-                  </div> */}
                   </div>
                   <div className="relative min-w-full">
                     <img
@@ -389,12 +365,6 @@ function App() {
                       className="h-full object-center md:h-150"
                       loading="lazy"
                     />
-                    {/* <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent">
-                    <div className="p-8">
-                      <h3 className="mb-2 text-2xl font-bold text-white">Marketing Campaign</h3>
-                      <p className="text-sm text-gray-200">Multi-channel digital marketing success</p>
-                    </div>
-                  </div> */}
                   </div>
                 </div>
               </div>
@@ -470,23 +440,28 @@ function App() {
               <div className="space-y-6">
                 <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
                   <div className="mb-6 flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-stone-200 bg-stone-100 dark:border-stone-700 dark:bg-stone-900/50">
-                      <img src="/photos/logo.webp" alt="Tammy's Nails Logo" />
-                    </div>
                     <div>
-                      <h3 className="mb-2 text-lg font-semibold text-gray-800 dark:text-neutral-100">
+                      <h3 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-neutral-100">
                         Tammy's Nails
                       </h3>
                       <p className="text-gray-600 dark:text-neutral-400">
-                        <FiMapPin className="inline-block mr-2" />
-                        <span>2907 Churn Crk Rd, Redding, CA 96002</span>
+                        <FiMapPin className="inline-block mr-2" /> Location:{" "}
+                        <br />
+                        2907 Churn Crk Rd, Redding, CA 96002
                       </p>
                       <p className="text-gray-600 dark:text-neutral-400">
-                        <FiPhone className="inline-block mr-2" /> (530) 226-9462
+                        <FiPhone className="inline-block mr-2" /> Phone: (530)
+                        226-9462
                       </p>
                       <p className="text-gray-600 dark:text-neutral-400">
-                        <FiClock className="inline-block mr-2" /> Mon-Sat: 9AM -
-                        7PM
+                        <FiMail className="inline-block mr-2" /> Email:
+                        tammysnailsalon@gmail.com
+                      </p>
+                      <p className="text-gray-600 dark:text-neutral-400">
+                        <FiClock className="inline-block mr-2" /> Business
+                        Hours: <br />
+                        Mon-Sat: 9:00 AM - 7PM <br />
+                        Sun: Closed
                       </p>
                     </div>
                   </div>
@@ -512,19 +487,8 @@ function App() {
         <footer className="border-t border-neutral-800 bg-neutral-900 py-8 text-gray-300 dark:border-neutral-900 dark:bg-neutral-950 dark:text-neutral-400">
           <div className="flex items-center justify-center gap-4 text-sm text-gray-500 md:flex-row dark:text-neutral-600">
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              ©2018 Tammy's Nails. All Rights Reserved.
+              ©2025 Tammy's Nails. All Rights Reserved.
             </p>
-            {/* <div class="flex gap-6">
-            <a href="/home" class="transition-colors hover:text-stone-400 dark:hover:text-stone-400">
-              Privacy Policy
-            </a>
-            <a href="/home" class="transition-colors hover:text-stone-400 dark:hover:text-stone-400">
-              Terms of Service
-            </a>
-            <a href="/home" class="transition-colors hover:text-stone-400 dark:hover:text-stone-400">
-              Cookie Policy
-            </a>
-          </div> */}
           </div>
         </footer>
       </div>
