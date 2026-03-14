@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
-import { FiPhone, FiMapPin, FiClock, FiMail } from "react-icons/fi";
+import { FiPhone, FiMapPin, FiClock, FiMail, FiCalendar } from "react-icons/fi";
 import { GrInstagram, GrGoogle } from "react-icons/gr";
 
 // Reusable Service Card Component
@@ -121,11 +121,20 @@ function App() {
 
               <div className="flex flex-1 items-center justify-end gap-4">
                 <a
+                  href="https://booking.gocheckin.net/v2/19988?social=website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden rounded-lg bg-amber-900 px-6 py-2 text-md font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700 md:block"
+                >
+                  <FiCalendar className="inline-block mr-2" />
+                  Book
+                </a>
+                <a
                   href="tel:+15302269462"
                   className="hidden rounded-lg bg-amber-900 px-6 py-2 text-md font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700 md:block"
                 >
                   <FiPhone className="inline-block mr-2" />
-                  Call to Book
+                  Call
                 </a>
 
                 {/* Mobile Menu Button */}
@@ -183,16 +192,6 @@ function App() {
                 >
                   Contact
                 </button>
-                <a
-                  href="tel:+15302269462"
-                  className="w-full bg-amber-900 px-6 py-2 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
-                >
-                  <FiPhone
-                    className="inline-block mr-2 text-red-100"
-                    color="red"
-                  />
-                  Call to Book
-                </a>
               </div>
             )}
           </div>
@@ -226,9 +225,28 @@ function App() {
               </h1>
             </div>
             <h2 className="mb-8 font-raleway text-2xl text-stone-800 md:text-4xl dark:text-stone-100">
-              Experience premium nail care with non-toxic products and trending
-              styles tailored to you.
+              Every visit is a moment just for you. We're here to pamper you
+              with personalized care, non-toxic premium products, and a warm
+              touch that leaves you feeling your absolute best.
             </h2>
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <a
+                href="https://booking.gocheckin.net/v2/19988?social=website"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg bg-amber-900 px-8 py-3 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
+              >
+                <FiCalendar className="inline-block mr-2" />
+                Book
+              </a>
+              <a
+                href="tel:+15302269462"
+                className="rounded-lg bg-amber-900 px-8 py-3 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
+              >
+                <FiPhone className="inline-block mr-2" />
+                Call
+              </a>
+            </div>
           </div>
         </section>
 
