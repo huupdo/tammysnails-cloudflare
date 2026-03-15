@@ -217,9 +217,9 @@ function App() {
           </div>
           <div className="relative z-10 max-w-4xl px-6 py-10 text-left">
             <div className="mb-4">
-              <span className="px-4 py-2 font-pacifico text-3xl leading-tight text-stone-700 md:text-4xl dark:text-stone-100">
+              <h1 className="px-4 py-2 font-pacifico text-3xl leading-tight text-stone-700 md:text-4xl dark:text-stone-100">
                 Welcome to
-              </span>
+              </h1>
               <h1 className="font-raleway text-5xl font-semibold tracking-widest text-amber-950 uppercase md:text-7xl dark:text-stone-100 [text-shadow:0_2px_12px_rgba(120,60,10,0.25)] dark:[text-shadow:0_2px_12px_rgba(0,0,0,0.25)]">
                 Tammy's Nails
               </h1>
