@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import "./App.css";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { FiPhone, FiMapPin, FiClock, FiMail, FiCalendar } from "react-icons/fi";
-import { GrInstagram, GrGoogle } from "react-icons/gr";
+import { GrInstagram, GrFacebook, GrGoogle } from "react-icons/gr";
 
 // Reusable Service Card Component
 interface ServiceCardProps {
@@ -31,10 +31,10 @@ const ServiceCard = ({ title, image }: ServiceCardProps) => (
 );
 
 function App() {
-  //   const contactRef = useRef(null);
+  //   const aboutusRef = useRef(null);
   //   const galleryRef = useRef(null);
   //   const servicesRef = useRef(null);
-  const contactRef = useRef<HTMLDivElement | null>(null);
+  const aboutusRef = useRef<HTMLDivElement | null>(null);
   const galleryRef = useRef<HTMLDivElement | null>(null);
   const servicesRef = useRef<HTMLDivElement | null>(null);
 
@@ -110,12 +110,12 @@ function App() {
                 <button
                   className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
                   onClick={() => {
-                    contactRef.current?.scrollIntoView({
+                    aboutusRef.current?.scrollIntoView({
                       behavior: "smooth",
                     });
                   }}
                 >
-                  Contact
+                  About Us
                 </button>
               </div>
 
@@ -187,10 +187,10 @@ function App() {
                   className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
                     setIsMenuOpen(false);
-                    contactRef.current?.scrollIntoView({ behavior: "smooth" });
+                    aboutusRef.current?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  Contact
+                  About Us
                 </button>
               </div>
             )}
@@ -437,53 +437,67 @@ function App() {
           </div>
         </section>
 
-        {/* contact */}
+        {/* about us */}
         <section
-          ref={contactRef}
+          ref={aboutusRef}
           className="relative overflow-hidden bg-neutral-50 py-8 dark:bg-neutral-900/50"
-          id="contact"
+          id="aboutus"
         >
           <div className="mx-auto max-w-5xl px-6">
             <div className="mb-16 text-center">
               <h2 className="mb-4 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
-                Contact Us
+                About Us
               </h2>
-              <p className="mx-auto max-w-2xl text-lg text-gray-700/80 dark:text-neutral-300/80">
-                Ready to experience a new standard of nail care in our boutique
-                nail salon.
-                <br /> Book your appointment today
-              </p>
             </div>
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-              <div className="space-y-6">
-                <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
-                  <div className="mb-6 flex items-start gap-4">
-                    <div>
-                      <h3 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-neutral-100">
-                        Tammy's Nails
-                      </h3>
-                      <p className="text-gray-600 dark:text-neutral-400">
-                        <FiMapPin className="inline-block mr-2" /> Location:{" "}
-                        <br />
-                        2907 Churn Crk Rd, Redding, CA 96002
-                      </p>
-                      <p className="text-gray-600 dark:text-neutral-400">
-                        <FiPhone className="inline-block mr-2" /> Phone: (530)
-                        226-9462
-                      </p>
-                      <p className="text-gray-600 dark:text-neutral-400">
-                        <FiMail className="inline-block mr-2" /> Email:
-                        tammysnailsalon@gmail.com
-                      </p>
-                      <p className="text-gray-600 dark:text-neutral-400">
-                        <FiClock className="inline-block mr-2" /> Business
-                        Hours: <br />
-                        Mon-Sat: 9:00 AM - 7PM <br />
-                        Sun: Closed
-                      </p>
-                    </div>
-                  </div>
+            <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+              <div className="space-y-5 text-gray-700 dark:text-neutral-300">
+                <p className="text-lg font-semibold text-amber-900 dark:text-amber-400">
+                  Welcome to Tammy's Nails — where great nails meet genuine
+                  care.
+                </p>
+                <p className="text-base leading-relaxed">
+                  Nestled in the heart of Redding, California at 2907 Churn
+                  Creek Rd, we've built a salon that feels less like an
+                  appointment and more like a little escape from your day. From
+                  the moment you walk in, you'll notice the difference — a
+                  clean, relaxing space where you're treated like a familiar
+                  face, not just a client.
+                </p>
+                <p className="text-base leading-relaxed">
+                  Our skilled nail technicians bring both talent and passion to
+                  every service, whether that's a classic manicure, a spa
+                  pedicure, gel or acrylic nails, or a custom nail art design
+                  you've been dreaming about. We take the time to listen to what
+                  you want and make sure you leave loving the results.
+                </p>
+                <div>
+                  <p className="mb-3 text-base font-semibold text-gray-800 dark:text-neutral-200">
+                    Why our clients keep coming back:
+                  </p>
+                  <ul className="space-y-2 text-base">
+                    {[
+                      "Experienced, friendly technicians who truly care",
+                      "Premium products and up-to-date techniques",
+                      "A spotlessly clean and comfortable environment",
+                      "Personalized services tailored to your style",
+                      "A convenient Redding location with a welcoming atmosphere",
+                    ].map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-amber-700 dark:bg-amber-500" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+                <p className="text-base leading-relaxed">
+                  At Tammy's Nails, we believe that taking care of yourself
+                  should feel effortless and enjoyable. We're proud to serve the
+                  Redding community and honored every time a client chooses to
+                  spend their time with us.
+                </p>
+                <p className="text-base font-medium italic text-amber-900 dark:text-amber-400">
+                  Come see us — we'd love to take care of you.
+                </p>
               </div>
               <div className="h-full min-h-75 lg:min-h-100">
                 <div className="h-full overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-800 dark:bg-neutral-950">
@@ -502,11 +516,195 @@ function App() {
             </div>
           </div>
         </section>
-        <footer className="border-t border-neutral-800 bg-neutral-900 py-8 text-gray-300 dark:border-neutral-900 dark:bg-neutral-950 dark:text-neutral-400">
-          <div className="flex items-center justify-center gap-4 text-sm text-gray-500 md:flex-row dark:text-neutral-600">
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              ©2025 Tammy's Nails. All Rights Reserved.
-            </p>
+        <footer className="border-t border-neutral-800 bg-neutral-900 text-gray-300 dark:border-neutral-900 dark:bg-neutral-950 dark:text-neutral-400">
+          {/* Footer main content */}
+          <div className="mx-auto max-w-7xl px-6 py-12">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+              {/* Column 1 — Business Info with semantic <address> for Local SEO */}
+              <div>
+                <img
+                  src="/photos/logo.webp"
+                  alt="Tammy's Nails Logo"
+                  className="mb-4 h-14 w-auto brightness-0 invert"
+                />
+                <address className="not-italic space-y-2 text-sm text-neutral-400 dark:text-neutral-500">
+                  <p
+                    itemProp="name"
+                    className="text-base font-semibold text-neutral-200 dark:text-neutral-300"
+                  >
+                    Tammy's Nails
+                  </p>
+                  <p>
+                    <FiMapPin className="mr-2 inline-block" />
+                    <a
+                      href="https://maps.app.goo.gl/z9JHS3Li9wNqWiZh6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-amber-400 transition-colors"
+                      itemProp="address"
+                    >
+                      2907 Churn Creek Rd, Redding, CA 96002
+                    </a>
+                  </p>
+                  <p>
+                    <FiPhone className="mr-2 inline-block" />
+                    <a
+                      href="tel:+15302269462"
+                      className="hover:text-amber-400 transition-colors"
+                      itemProp="telephone"
+                    >
+                      (530) 226-9462
+                    </a>
+                  </p>
+                  <p>
+                    <FiMail className="mr-2 inline-block" />
+                    <a
+                      href="mailto:tammysnailredding@gmail.com"
+                      className="hover:text-amber-400 transition-colors"
+                      itemProp="email"
+                    >
+                      tammysnailredding@gmail.com
+                    </a>
+                  </p>
+                  <p>
+                    <FiClock className="mr-2 inline-block" />
+                    Mon–Sat: 9:00 AM – 7:00 PM
+                    <br />
+                    <span className="ml-6">Sun: Closed</span>
+                  </p>
+                </address>
+              </div>
+
+              {/* Column 2 — Quick Links */}
+              <div>
+                <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-neutral-200 dark:text-neutral-300">
+                  Quick Links
+                </h4>
+                <nav aria-label="Footer navigation">
+                  <ul className="space-y-2 text-sm text-neutral-400 dark:text-neutral-500">
+                    <li>
+                      <button
+                        onClick={() =>
+                          window.scroll({ top: 0, behavior: "smooth" })
+                        }
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        Home
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() =>
+                          servicesRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                          })
+                        }
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        Services
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() =>
+                          galleryRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                          })
+                        }
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        Gallery
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() =>
+                          aboutusRef.current?.scrollIntoView({
+                            behavior: "smooth",
+                          })
+                        }
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        About Us
+                      </button>
+                    </li>
+                    <li>
+                      <a
+                        href="https://booking.gocheckin.net/v2/19988?social=website"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-amber-400 transition-colors"
+                      >
+                        Book Appointment
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
+              {/* Column 3 — Social & Legal */}
+              <div>
+                <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-neutral-200 dark:text-neutral-300">
+                  Follow Us
+                </h4>
+                <div className="mb-6 flex gap-4">
+                  <a
+                    href="https://www.instagram.com/tammy_nails_redding/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 text-neutral-400 transition-colors hover:border-pink-500 hover:text-pink-500 dark:border-neutral-700"
+                  >
+                    <GrInstagram size={18} />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/people/Tammys-Nails/61574804282433/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 text-neutral-400 transition-colors hover:border-blue-600 hover:text-blue-600 dark:border-neutral-700"
+                  >
+                    <GrFacebook size={18} />
+                  </a>
+                  <a
+                    href="https://maps.app.goo.gl/z9JHS3Li9wNqWiZh6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Google Reviews"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-700 text-neutral-400 transition-colors hover:border-blue-500 hover:text-blue-500 dark:border-neutral-700"
+                  >
+                    <GrGoogle size={18} />
+                  </a>
+                </div>
+                <h4 className="mb-3 text-sm font-semibold uppercase tracking-widest text-neutral-200 dark:text-neutral-300">
+                  Legal
+                </h4>
+                <ul className="space-y-2 text-sm text-neutral-400 dark:text-neutral-500">
+                  <li>
+                    <a
+                      href="/privacy-policy"
+                      className="hover:text-amber-400 transition-colors"
+                    >
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/terms-of-service"
+                      className="hover:text-amber-400 transition-colors"
+                    >
+                      Terms of Service
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer bottom bar */}
+          <div className="border-t border-neutral-800 py-5 text-center text-xs text-neutral-600 dark:border-neutral-900 dark:text-neutral-700">
+            © 2025 Tammy's Nails. All Rights Reserved | 2907 Churn Crk Rd,
+            Redding, CA 96002
           </div>
         </footer>
       </div>
