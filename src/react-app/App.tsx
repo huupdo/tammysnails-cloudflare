@@ -159,7 +159,7 @@ function App() {
                 <button
                   className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
-                    setIsMenuOpen(false);
+                    // setIsMenuOpen(false);
                     window.scroll({ top: 0, behavior: "smooth" });
                   }}
                 >
@@ -168,7 +168,7 @@ function App() {
                 <button
                   className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
-                    setIsMenuOpen(false);
+                    // setIsMenuOpen(false);
                     servicesRef.current?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
@@ -177,7 +177,7 @@ function App() {
                 <button
                   className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
-                    setIsMenuOpen(false);
+                    // setIsMenuOpen(false);
                     galleryRef.current?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
@@ -186,7 +186,7 @@ function App() {
                 <button
                   className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
                   onClick={() => {
-                    setIsMenuOpen(false);
+                    // setIsMenuOpen(false);
                     aboutusRef.current?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
