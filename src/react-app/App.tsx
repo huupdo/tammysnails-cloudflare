@@ -90,7 +90,10 @@ function Navbar() {
             </button>
             <button
               className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
-              onClick={() => { setIsMenuOpen(false); navigate("/services"); }}
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/services");
+              }}
             >
               Services
             </button>
@@ -159,7 +162,10 @@ function Navbar() {
             </button>
             <button
               className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
-              onClick={() => { setIsMenuOpen(false); navigate("/services"); }}
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/services");
+              }}
             >
               Services
             </button>
@@ -184,6 +190,26 @@ function Navbar() {
             >
               Policy
             </button>
+            <div className="flex w-full gap-3 px-4 pt-2">
+              <a
+                href="https://booking.gocheckin.net/v2/19988?social=website"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 rounded-lg bg-amber-900 px-4 py-2 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FiCalendar className="inline-block mr-2" />
+                Book
+              </a>
+              <a
+                href="tel:+15302269462"
+                className="flex-1 rounded-lg bg-amber-900 px-4 py-2 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FiPhone className="inline-block mr-2" />
+                Call
+              </a>
+            </div>
           </div>
         )}
       </div>
@@ -302,7 +328,7 @@ function Footer() {
                 </li>
                 <li>
                   <button
-                    onClick={() => scrollTo("services")}
+                    onClick={() => navigate("/services")}
                     className="hover:text-amber-400 transition-colors"
                   >
                     Services
