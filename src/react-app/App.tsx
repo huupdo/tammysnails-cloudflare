@@ -14,6 +14,7 @@ import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { FiPhone, FiMapPin, FiClock, FiMail, FiCalendar } from "react-icons/fi";
 import { GrInstagram, GrFacebookOption, GrGoogle } from "react-icons/gr";
 import PolicyPage from "./policy";
+import ServicesPage from "./services";
 
 // Reusable Service Card Component
 interface ServiceCardProps {
@@ -89,7 +90,7 @@ function Navbar() {
             </button>
             <button
               className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
-              onClick={() => scrollTo("services")}
+              onClick={() => { setIsMenuOpen(false); navigate("/services"); }}
             >
               Services
             </button>
@@ -158,7 +159,7 @@ function Navbar() {
             </button>
             <button
               className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
-              onClick={() => scrollTo("services")}
+              onClick={() => { setIsMenuOpen(false); navigate("/services"); }}
             >
               Services
             </button>
@@ -752,6 +753,7 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
+        <Route path="/services" element={<ServicesPage />} />
         <Route path="/policy" element={<PolicyPage />} />
       </Route>
     </Routes>
