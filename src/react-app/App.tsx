@@ -481,15 +481,15 @@ function MainPage() {
             <h1 className="px-4 py-2 font-pacifico text-3xl leading-tight text-stone-700 md:text-4xl dark:text-stone-100">
               Welcome to
             </h1>
-            <h1 className="font-raleway text-5xl font-semibold tracking-widest text-amber-950 uppercase md:text-7xl dark:text-stone-100 [text-shadow:0_2px_12px_rgba(120,60,10,0.25)] dark:[text-shadow:0_2px_12px_rgba(0,0,0,0.25)]">
+            <h2 className="font-raleway text-5xl font-semibold tracking-widest text-amber-950 uppercase md:text-7xl dark:text-stone-100 [text-shadow:0_2px_12px_rgba(120,60,10,0.25)] dark:[text-shadow:0_2px_12px_rgba(0,0,0,0.25)]">
               Tammy's Nails
-            </h1>
+            </h2>
           </div>
-          <h2 className="mb-8 font-raleway text-2xl text-stone-800 md:text-4xl dark:text-stone-100">
+          <p className="mb-8 font-raleway text-2xl text-stone-800 md:text-4xl dark:text-stone-100">
             Every visit is a moment just for you. We're here to pamper you with
             personalized care, non-toxic premium products, and a warm touch that
             leaves you feeling your absolute best.
-          </h2>
+          </p>
           <div className="flex flex-col gap-4 sm:flex-row">
             <a
               href="https://booking.gocheckin.net/v2/19988?social=website"
