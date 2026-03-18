@@ -17,176 +17,231 @@ interface ServiceCategory {
   items: ServiceItem[];
 }
 
+interface NailEnhancement {
+  name: string;
+  description: string;
+  price1?: string;
+  price2?: string;
+  price3?: string;
+}
+interface WaxingService {
+  name: string;
+  description: string;
+  price1?: string;
+  price2?: string;
+}
+
 interface AddOn {
   name: string;
   description: string;
-  price?: string;
+  price1?: string;
+  price2?: string;
+  price3?: string;
 }
 
 const categories: ServiceCategory[] = [
   {
     id: "manicures",
     title: "Manicures",
-    subtitle: "Hands & Nails",
+    subtitle: "French style extra cost of $5",
     image: "/photos/nail 1.webp",
     items: [
       {
-        name: "Classic Manicure",
+        name: "Relaxing Manicure",
         description:
-          "Shape, buff, and polish with cuticle care and a relaxing hand massage.",
-        basePrice: "$—",
-        gelPrice: "$—",
+          "Cleaning soak and shaping of nails, removal cuticle, buffing, hand massage and finish with polish.",
+        basePrice: "$25",
+        gelPrice: "$35",
         popular: true,
       },
       {
-        name: "Gel Manicure",
+        name: "Deluxe Manicure",
         description:
-          "Chip-free gel polish cured under UV light for a lasting, high-gloss finish.",
-        basePrice: "$—",
-        gelPrice: "$—",
+          "Cleaning soak and shaping of nails, removal cuticle, buffing, scrubbing with Sugar Scrub, Paraffin Wax treatment and massage.",
+        basePrice: "$35",
+        gelPrice: "$45",
       },
       {
-        name: "Acrylic Full Set",
-        description: "Sculpted acrylic overlays for added length and strength.",
-        basePrice: "$—",
-        gelPrice: "$—",
-        popular: true,
+        name: "Manicure - French",
+        description: "",
+        basePrice: "$27",
+        gelPrice: "",
       },
       {
-        name: "Acrylic Fill",
-        description:
-          "Maintenance fill to refresh and restore your existing acrylic set.",
-        basePrice: "$—",
-        gelPrice: "$—",
-      },
-      {
-        name: "Dip Powder",
-        description:
-          "Odorless, long-wearing color in a lightweight powder formula.",
-        basePrice: "$—",
-      },
-      {
-        name: "Nail Art",
-        description:
-          "Hand-painted designs, decals, and custom artwork tailored to your vision.",
-        basePrice: "$—",
+        name: "Manicure - Shellac + Removal",
+        description: "",
+        basePrice: "$25",
+        gelPrice: "",
       },
     ],
   },
   {
     id: "pedicures",
     title: "Pedicures",
-    subtitle: "Feet & Toes",
+    subtitle:
+      "Upon request, Callous removal treatment is offered for an extra cost of $10",
     image: "/photos/pedicure.webp",
     items: [
       {
-        name: "Classic Pedicure",
+        name: "Relaxing Pedicure",
         description:
-          "Warm soak, exfoliation, nail shaping, cuticle care, and your choice of polish.",
-        basePrice: "$—",
-        gelPrice: "$—",
+          "Sea salt cleansing tub, special cuticle treatment, trimmed, filed, buffed, leg and foot massage, warm towels.",
+        basePrice: "$35",
+        gelPrice: "$45",
+      },
+      {
+        name: "European Pedicure",
+        description:
+          "Sea Salt Gel Scrub, plus Paraffin treatment to soften and smooth your skin.",
+        basePrice: "$45",
+        gelPrice: "$55",
         popular: true,
       },
       {
-        name: "Spa Pedicure",
+        name: "Deluxe Pedicure",
         description:
-          "An elevated experience with extended massage, sugar scrub, and hydrating mask.",
-        basePrice: "$—",
-        gelPrice: "$—",
+          "Sugar Scrub, Mineral Marine Masque, Paraffin Wax, and Cooling Gel massage.",
+        basePrice: "$55",
+        gelPrice: "$65",
       },
       {
-        name: "Gel Pedicure",
+        name: "Deluxe Hot Stone Pedicure",
         description:
-          "Classic pedicure finished with long-lasting, chip-resistant gel polish.",
-        basePrice: "$—",
-        gelPrice: "$—",
+          "Deluxe Pedicure plus 10-minute massage with heated rocks to reduce fatigue.",
+        basePrice: "$65|$75",
+        gelPrice: "",
       },
       {
-        name: "Hot Stone Pedicure",
-        description:
-          "Heated stones melt away tension and promote deep circulation in tired feet.",
-        basePrice: "$—",
-        gelPrice: "$—",
-      },
-    ],
-  },
-  {
-    id: "waxing",
-    title: "Waxing",
-    subtitle: "Brows & Body",
-    image: "/photos/eyebrow.webp",
-    items: [
-      {
-        name: "Eyebrow Wax",
-        description:
-          "Precise shaping to define, frame, and clean up your brows.",
-        basePrice: "$—",
-        popular: true,
-      },
-      {
-        name: "Lip Wax",
-        description: "Quick, smooth removal of unwanted upper lip hair.",
-        basePrice: "$—",
-      },
-      {
-        name: "Full Face Wax",
-        description:
-          "Brows, lip, chin, and cheek waxing for a completely smooth complexion.",
-        basePrice: "$—",
-      },
-      {
-        name: "Arm Wax",
-        description: "Gentle full-arm waxing for smooth, lasting results.",
-        basePrice: "$—",
-      },
-      {
-        name: "Leg Wax",
-        description: "Full or half-leg waxing for silky, hair-free skin.",
-        basePrice: "$—",
+        name: "Sugar Massage Pedicure",
+        description: "",
+        basePrice: "$37",
+        gelPrice: "",
       },
     ],
   },
   {
     id: "kids",
     title: "Kids' Services",
-    subtitle: "Little Ones",
+    subtitle: "Special care for our younger guests (Ages 10 & under).",
     image: "/photos/kids nails.webp",
     items: [
       {
-        name: "Kids' Manicure",
-        description:
-          "A gentle, fun manicure with kid-safe polish — perfect for little hands.",
-        basePrice: "$—",
-        popular: true,
+        name: "Kids' Relaxing Manicure",
+        description: "A gentle cleaning and polish for kids.",
+        basePrice: "$20",
+        gelPrice: "$30",
       },
       {
-        name: "Kids' Pedicure",
-        description:
-          "Soft soak, nail trim, and colorful polish chosen just for them.",
-        basePrice: "$—",
-      },
-      {
-        name: "Mini Nail Art",
-        description:
-          "Playful designs to make your little one feel extra special.",
-        basePrice: "$—",
+        name: "Kids' Relaxing Pedicure",
+        description: "Gentle foot soak and polish for kids.",
+        basePrice: "$30",
+        gelPrice: "$40",
       },
     ],
   },
 ];
 
-const addOns: AddOn[] = [
+const waxingServices: WaxingService[] = [
   {
-    name: "French Style",
-    description:
-      "Classic white-tip finish applied to any manicure or pedicure service.",
-    price: "$—",
+    name: "Eyebrows / Full Face",
+    description: "",
+    price1: "$12",
+    price2: "$40",
   },
   {
-    name: "Callus Removal",
-    description:
-      "Deep exfoliation treatment to soften and remove built-up calluses on the feet.",
-    price: "$—",
+    name: "Full / Half Arm",
+    description: "",
+    price1: "$35",
+    price2: "$50",
+  },
+  {
+    name: "Full / Half Legs",
+    description: "",
+    price1: "$40",
+    price2: "$60",
+  },
+];
+
+const nailEnhancements: NailEnhancement[] = [
+  {
+    name: "Gel-X / Builder Gel Full Set | Fill",
+    description: "",
+    price1: "",
+    price2: "$55",
+    price3: "$45",
+  },
+  {
+    name: "Acrylic with Regular Polish Full Set | Fill",
+    description: "",
+    price1: "",
+    price2: "$45",
+    price3: "$35",
+  },
+  {
+    name: "Acrylic with Gel Polish Full Set | Fill",
+    description: "",
+    price1: "",
+    price2: "$50",
+    price3: "$40",
+  },
+  {
+    name: "Pink and White | Pink Fill | P&W Fill",
+    description: "",
+    price1: "$60",
+    price2: "$40",
+    price3: "$50",
+  },
+  {
+    name: "Dipping powder | White tip",
+    description: "",
+    price1: "",
+    price2: "$45",
+    price3: "$55",
+  },
+];
+
+const addOns: AddOn[] = [
+  {
+    name: "Hand Paraffin Treatment",
+    description: "",
+    price1: "",
+    price2: "",
+    price3: "$8",
+  },
+  {
+    name: "Feet Paraffin Treatment",
+    description: "",
+    price1: "",
+    price2: "",
+    price3: "$10",
+  },
+  {
+    name: "Take Off (With | Without Service)",
+    description: "",
+    price1: "$5",
+    price2: "$10",
+    price3: "$15",
+  },
+  {
+    name: "Color Change - Regular (Hands | Feet)",
+    description: "",
+    price1: "",
+    price2: "$10",
+    price3: "$15",
+  },
+  {
+    name: "Color Change - Gel (Hands | Feet)",
+    description: "",
+    price1: "",
+    price2: "$25",
+    price3: "$25",
+  },
+  {
+    name: "Nail Art Designs",
+    description: "",
+    price1: "",
+    price2: "",
+    price3: "$5 & Up",
   },
 ];
 
@@ -257,7 +312,7 @@ const ServicesPage = () => {
               <p className="mb-4 text-[10px] font-semibold tracking-[0.25em] text-neutral-400 uppercase dark:text-neutral-600">
                 Menu
               </p>
-              {categories.map(({ id, title, subtitle }) => (
+              {categories.map(({ id, title }) => (
                 <button
                   key={id}
                   onClick={() => scrollToSection(id)}
@@ -276,11 +331,32 @@ const ServicesPage = () => {
                   >
                     {title}
                   </span>
-                  <span className="text-[11px] text-neutral-400 dark:text-neutral-600">
-                    {subtitle}
-                  </span>
                 </button>
               ))}
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("waxingServices")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
+              >
+                <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
+                  Waxing
+                </span>
+              </button>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("nailEnhancements")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
+              >
+                <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
+                  Nail Enhancements
+                </span>
+              </button>
               <button
                 onClick={() =>
                   document
@@ -290,10 +366,7 @@ const ServicesPage = () => {
                 className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
               >
                 <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
-                  Add-Ons
-                </span>
-                <span className="text-[11px] text-neutral-400 dark:text-neutral-600">
-                  Enhancements
+                  Additional Services
                 </span>
               </button>
 
@@ -313,7 +386,7 @@ const ServicesPage = () => {
 
           {/* Service Sections */}
           <div className="min-w-0 flex-1 space-y-16">
-            {categories.map(({ id, title, image, items }) => (
+            {categories.map(({ id, title, subtitle, image, items }) => (
               <section
                 key={id}
                 id={id}
@@ -322,10 +395,13 @@ const ServicesPage = () => {
                 }}
               >
                 {/* Section title */}
-                <div className="mb-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
+                <div className="mb-4 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
                   <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
                     {title}
                   </h2>
+                  <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
+                    {subtitle}
+                  </span>
                 </div>
 
                 {/* Image (mobile only — above list) */}
@@ -347,7 +423,7 @@ const ServicesPage = () => {
                         Base
                       </span>
                       <span className="w-12 text-center text-[10px] font-semibold tracking-widest text-amber-600/70 uppercase dark:text-amber-600/50">
-                        Gel +
+                        + Gel
                       </span>
                     </div>
 
@@ -426,15 +502,85 @@ const ServicesPage = () => {
                 </div>
               </section>
             ))}
+            {/* Waxing Section */}
+            <section id="waxingServices">
+              <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
+                <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                  Waxing
+                </h2>
+                <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600"></span>
+              </div>
+              <ul className="divide-y divide-neutral-100 dark:divide-neutral-800/60">
+                {waxingServices.map((waxingService) => (
+                  <li
+                    key={waxingService.name}
+                    className="flex items-start justify-between gap-6 py-5"
+                  >
+                    <div className="flex-1">
+                      <h3 className="mb-1 font-serif text-base font-medium text-gray-900 dark:text-neutral-100">
+                        {waxingService.name}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                        {waxingService.description}
+                      </p>
+                    </div>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {waxingService.price1 ?? "—"}
+                    </span>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {waxingService.price2 ?? "—"}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Nail Enhancements Section */}
+            <section id="nailEnhancements">
+              <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
+                <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                  Nail Enhancements
+                </h2>
+                <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
+                  Professional nail extensions and dipping systems.
+                </span>
+              </div>
+              <ul className="divide-y divide-neutral-100 dark:divide-neutral-800/60">
+                {nailEnhancements.map((nailEnhancement) => (
+                  <li
+                    key={nailEnhancement.name}
+                    className="flex items-start justify-between gap-6 py-5"
+                  >
+                    <div className="flex-1">
+                      <h3 className="mb-1 font-serif text-base font-medium text-gray-900 dark:text-neutral-100">
+                        {nailEnhancement.name}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                        {nailEnhancement.description}
+                      </p>
+                    </div>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {nailEnhancement.price1 ?? "—"}
+                    </span>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {nailEnhancement.price2 ?? "—"}
+                    </span>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {nailEnhancement.price3 ?? "—"}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
 
             {/* Add-Ons Section */}
             <section id="addons">
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
                 <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
-                  Add-Ons
+                  Additional Services
                 </h2>
                 <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
-                  Enhancements
+                  Customize your experience with these add-ons.
                 </span>
               </div>
               <ul className="divide-y divide-neutral-100 dark:divide-neutral-800/60">
@@ -452,7 +598,13 @@ const ServicesPage = () => {
                       </p>
                     </div>
                     <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
-                      {addon.price ?? "—"}
+                      {addon.price1 ?? "—"}
+                    </span>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {addon.price2 ?? "—"}
+                    </span>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {addon.price3 ?? "—"}
                     </span>
                   </li>
                 ))}
