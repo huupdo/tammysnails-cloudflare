@@ -1,220 +1,494 @@
-import { FiCalendar } from "react-icons/fi";
+import { useState, useEffect, useRef } from "react";
+import { FiCalendar, FiPhone, FiChevronDown } from "react-icons/fi";
 
 interface ServiceItem {
+  name: string;
+  description: string;
+  basePrice?: string;
+  gelPrice?: string;
+  popular?: boolean;
+}
+
+interface ServiceCategory {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  items: ServiceItem[];
+}
+
+interface AddOn {
   name: string;
   description: string;
   price?: string;
 }
 
-interface ServiceCategory {
-  title: string;
-  image: string;
-  items: ServiceItem[];
-}
-
 const categories: ServiceCategory[] = [
   {
+    id: "manicures",
     title: "Manicures",
+    subtitle: "Hands & Nails",
     image: "/photos/nail 1.webp",
     items: [
       {
         name: "Classic Manicure",
         description:
-          "Shape, buff, and polish with a relaxing hand massage and cuticle care.",
+          "Shape, buff, and polish with cuticle care and a relaxing hand massage.",
+        basePrice: "$—",
+        gelPrice: "$—",
+        popular: true,
       },
       {
         name: "Gel Manicure",
         description:
-          "Long-lasting gel polish cured under UV light for a chip-free, glossy finish.",
+          "Chip-free gel polish cured under UV light for a lasting, high-gloss finish.",
+        basePrice: "$—",
+        gelPrice: "$—",
       },
       {
-        name: "Acrylic Nails",
-        description:
-          "Full set or fill with durable acrylic for added length and strength.",
+        name: "Acrylic Full Set",
+        description: "Sculpted acrylic overlays for added length and strength.",
+        basePrice: "$—",
+        gelPrice: "$—",
+        popular: true,
       },
       {
-        name: "Nail Art",
+        name: "Acrylic Fill",
         description:
-          "Custom designs, decals, and hand-painted artwork to express your style.",
+          "Maintenance fill to refresh and restore your existing acrylic set.",
+        basePrice: "$—",
+        gelPrice: "$—",
       },
       {
         name: "Dip Powder",
         description:
-          "A stronger, longer-lasting alternative to gel using colored powder.",
+          "Odorless, long-wearing color in a lightweight powder formula.",
+        basePrice: "$—",
+      },
+      {
+        name: "Nail Art",
+        description:
+          "Hand-painted designs, decals, and custom artwork tailored to your vision.",
+        basePrice: "$—",
       },
     ],
   },
   {
+    id: "pedicures",
     title: "Pedicures",
+    subtitle: "Feet & Toes",
     image: "/photos/pedicure.webp",
     items: [
       {
         name: "Classic Pedicure",
         description:
-          "Foot soak, exfoliation, nail shaping, cuticle care, and polish.",
+          "Warm soak, exfoliation, nail shaping, cuticle care, and your choice of polish.",
+        basePrice: "$—",
+        gelPrice: "$—",
+        popular: true,
       },
       {
         name: "Spa Pedicure",
         description:
-          "Elevated pedicure with extended massage, scrub, and a moisturizing mask.",
+          "An elevated experience with extended massage, sugar scrub, and hydrating mask.",
+        basePrice: "$—",
+        gelPrice: "$—",
       },
       {
         name: "Gel Pedicure",
         description:
-          "All the benefits of a classic pedicure with chip-resistant gel polish.",
+          "Classic pedicure finished with long-lasting, chip-resistant gel polish.",
+        basePrice: "$—",
+        gelPrice: "$—",
       },
       {
         name: "Hot Stone Pedicure",
         description:
-          "Warm stones are used to deeply relax muscles and improve circulation.",
+          "Heated stones melt away tension and promote deep circulation in tired feet.",
+        basePrice: "$—",
+        gelPrice: "$—",
       },
     ],
   },
   {
+    id: "waxing",
     title: "Waxing",
+    subtitle: "Brows & Body",
     image: "/photos/eyebrow.webp",
     items: [
       {
         name: "Eyebrow Wax",
         description:
-          "Precise shaping and cleanup to define and frame your brows.",
+          "Precise shaping to define, frame, and clean up your brows.",
+        basePrice: "$—",
+        popular: true,
       },
       {
         name: "Lip Wax",
-        description: "Quick and effective removal of unwanted upper lip hair.",
+        description: "Quick, smooth removal of unwanted upper lip hair.",
+        basePrice: "$—",
       },
       {
         name: "Full Face Wax",
         description:
-          "Comprehensive facial waxing including brows, lip, chin, and cheeks.",
+          "Brows, lip, chin, and cheek waxing for a completely smooth complexion.",
+        basePrice: "$—",
       },
       {
-        name: "Arm & Leg Wax",
-        description:
-          "Smooth, long-lasting hair removal for arms and legs.",
+        name: "Arm Wax",
+        description: "Gentle full-arm waxing for smooth, lasting results.",
+        basePrice: "$—",
+      },
+      {
+        name: "Leg Wax",
+        description: "Full or half-leg waxing for silky, hair-free skin.",
+        basePrice: "$—",
       },
     ],
   },
   {
+    id: "kids",
     title: "Kids' Services",
+    subtitle: "Little Ones",
     image: "/photos/kids nails.webp",
     items: [
       {
         name: "Kids' Manicure",
         description:
-          "A fun, gentle manicure with kid-safe polish — perfect for little ones.",
+          "A gentle, fun manicure with kid-safe polish — perfect for little hands.",
+        basePrice: "$—",
+        popular: true,
       },
       {
         name: "Kids' Pedicure",
         description:
-          "Soft foot soak, nail trim, and colorful polish for young guests.",
+          "Soft soak, nail trim, and colorful polish chosen just for them.",
+        basePrice: "$—",
       },
       {
         name: "Mini Nail Art",
         description:
-          "Simple and playful designs to make kids feel extra special.",
+          "Playful designs to make your little one feel extra special.",
+        basePrice: "$—",
       },
     ],
   },
 ];
 
+const addOns: AddOn[] = [
+  {
+    name: "French Style",
+    description:
+      "Classic white-tip finish applied to any manicure or pedicure service.",
+    price: "$—",
+  },
+  {
+    name: "Callus Removal",
+    description:
+      "Deep exfoliation treatment to soften and remove built-up calluses on the feet.",
+    price: "$—",
+  },
+];
+
+// Build the default open set: first item of each category
+const defaultOpen = new Set<string>(
+  categories.map(({ id, items }) => `${id}-${items[0].name}`),
+);
+
 const ServicesPage = () => {
+  const [activeId, setActiveId] = useState(categories[0].id);
+  const [openItems, setOpenItems] = useState<Set<string>>(defaultOpen);
+  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    categories.forEach(({ id }) => {
+      const el = sectionRefs.current[id];
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveId(id);
+        },
+        { rootMargin: "-30% 0px -60% 0px", threshold: 0 },
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    sectionRefs.current[id]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const toggleItem = (key: string) => {
+    setOpenItems((prev) => {
+      const next = new Set(prev);
+      next.has(key) ? next.delete(key) : next.add(key);
+      return next;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-800 antialiased dark:bg-neutral-950 dark:text-neutral-100">
-      <main className="mx-auto max-w-5xl px-6 py-16">
-        {/* Header */}
-        <div className="mb-12 text-center">
-          <h1 className="mb-3 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
-            Our Services
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-neutral-400">
-            Discover our full range of nail care and beauty services — each
-            crafted to give you the perfect experience.
-          </p>
-          <div className="mt-6">
-            <a
-              href="https://booking.gocheckin.net/v2/19988?social=website"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-amber-900 px-8 py-3 text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
-            >
-              <FiCalendar size={16} />
-              Book an Appointment
-            </a>
-          </div>
-        </div>
+      {/* Page Header */}
+      <div className="border-b border-neutral-100 bg-neutral-50 px-6 py-8 text-center dark:border-neutral-800 dark:bg-neutral-900/40">
+        <p className="mb-2 font-serif text-sm tracking-[0.3em] text-amber-700 uppercase dark:text-amber-500">
+          Tammy's Nails · Redding, CA
+        </p>
+        <h1 className="mb-3 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
+          Our Services
+        </h1>
+        <p className="mx-auto max-w-4xl text-base text-gray-500 dark:text-neutral-400">
+          Every service is performed with care, precision, and premium products
+          — because you deserve nothing less.
+        </p>
+      </div>
 
-        <div className="space-y-16">
-          {categories.map((category) => (
-            <section key={category.title}>
-              {/* Category Header */}
-              <div className="mb-6 flex items-center gap-6">
-                <img
-                  src={category.image}
-                  alt={category.title}
-                  className="h-20 w-20 rounded-2xl object-cover shadow-md"
-                />
-                <h2 className="font-serif text-3xl font-semibold text-amber-900 dark:text-amber-400">
-                  {category.title}
-                </h2>
-              </div>
-
-              {/* Service Items */}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {category.items.map((item) => (
-                  <div
-                    key={item.name}
-                    className="rounded-2xl border border-neutral-200 bg-neutral-50 p-6 dark:border-neutral-800 dark:bg-neutral-900/50"
+      {/* Body: Sticky Nav + Content */}
+      <div className="mx-auto max-w-6xl px-6 py-14">
+        <div className="flex gap-12 lg:gap-16">
+          {/* Sticky Category Nav — hidden on mobile */}
+          <aside className="hidden lg:block">
+            <nav className="sticky top-28 w-44 space-y-1">
+              <p className="mb-4 text-[10px] font-semibold tracking-[0.25em] text-neutral-400 uppercase dark:text-neutral-600">
+                Menu
+              </p>
+              {categories.map(({ id, title, subtitle }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all ${
+                    activeId === id
+                      ? "bg-amber-50 dark:bg-amber-900/15"
+                      : "hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
+                  }`}
+                >
+                  <span
+                    className={`text-sm font-semibold tracking-wide transition-colors ${
+                      activeId === id
+                        ? "text-amber-900 dark:text-amber-400"
+                        : "text-gray-500 group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300"
+                    }`}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="mb-1 font-serif text-lg font-semibold text-gray-900 dark:text-neutral-100">
-                          {item.name}
-                        </h3>
-                        <p className="text-sm leading-relaxed text-gray-600 dark:text-neutral-400">
-                          {item.description}
-                        </p>
-                      </div>
-                      {item.price && (
-                        <span className="shrink-0 text-sm font-semibold text-amber-800 dark:text-amber-400">
-                          {item.price}
-                        </span>
-                      )}
+                    {title}
+                  </span>
+                  <span className="text-[11px] text-neutral-400 dark:text-neutral-600">
+                    {subtitle}
+                  </span>
+                </button>
+              ))}
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("addons")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
+              >
+                <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
+                  Add-Ons
+                </span>
+                <span className="text-[11px] text-neutral-400 dark:text-neutral-600">
+                  Enhancements
+                </span>
+              </button>
+
+              <div className="border-t border-neutral-100 pt-6 dark:border-neutral-800">
+                <a
+                  href="https://booking.gocheckin.net/v2/19988?social=website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-amber-900 px-3 py-2.5 text-xs font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
+                >
+                  <FiCalendar size={12} />
+                  Book Now
+                </a>
+              </div>
+            </nav>
+          </aside>
+
+          {/* Service Sections */}
+          <div className="min-w-0 flex-1 space-y-16">
+            {categories.map(({ id, title, image, items }) => (
+              <section
+                key={id}
+                id={id}
+                ref={(el) => {
+                  sectionRefs.current[id] = el;
+                }}
+              >
+                {/* Section title */}
+                <div className="mb-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
+                  <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                    {title}
+                  </h2>
+                </div>
+
+                {/* Image (mobile only — above list) */}
+                <div className="mb-4 h-44 overflow-hidden rounded-xl sm:hidden">
+                  <img
+                    src={image}
+                    alt={title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+
+                {/* List + image side-by-side on desktop */}
+                <div className="flex gap-6">
+                  {/* List column */}
+                  <div className="min-w-0 flex-1">
+                    {/* Price column headers */}
+                    <div className="mb-1 flex items-center justify-end gap-6 px-1 pb-1">
+                      <span className="w-12 text-center text-[10px] font-semibold tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
+                        Base
+                      </span>
+                      <span className="w-12 text-center text-[10px] font-semibold tracking-widest text-amber-600/70 uppercase dark:text-amber-600/50">
+                        Gel +
+                      </span>
+                    </div>
+
+                    {/* Menu-style rows */}
+                    <ul className="divide-y divide-neutral-100 dark:divide-neutral-800/60">
+                      {items.map((item) => {
+                        const key = `${id}-${item.name}`;
+                        const isOpen = openItems.has(key);
+                        return (
+                          <li key={item.name}>
+                            <button
+                              onClick={() => toggleItem(key)}
+                              className="group flex w-full items-start gap-4 py-5 text-left"
+                            >
+                              {/* Chevron */}
+                              <FiChevronDown
+                                size={15}
+                                className={`mt-0.5 shrink-0 text-neutral-300 transition-transform duration-200 dark:text-neutral-600 ${isOpen ? "rotate-180" : ""}`}
+                              />
+
+                              {/* Name + badge */}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-2">
+                                  <h3
+                                    className={`font-serif text-base font-medium transition-colors ${
+                                      isOpen
+                                        ? "text-amber-900 dark:text-amber-400"
+                                        : "text-gray-900 group-hover:text-amber-900 dark:text-neutral-100 dark:group-hover:text-amber-400"
+                                    }`}
+                                  >
+                                    {item.name}
+                                  </h3>
+                                  {item.popular && (
+                                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold tracking-widest text-amber-800 uppercase dark:bg-amber-900/30 dark:text-amber-400">
+                                      Most Popular
+                                    </span>
+                                  )}
+                                </div>
+                                {/* Expandable description */}
+                                <div
+                                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "mt-2 max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
+                                >
+                                  <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Prices */}
+                              <div className="flex shrink-0 items-start gap-6">
+                                <span className="w-12 text-center font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                                  {item.basePrice ?? "—"}
+                                </span>
+                                <span className="w-12 text-center font-serif text-sm font-medium text-amber-700 dark:text-amber-500">
+                                  {item.gelPrice ?? "—"}
+                                </span>
+                              </div>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+
+                  {/* Image column — desktop only */}
+                  <div className="hidden shrink-0 sm:block">
+                    <div className="sticky top-28 w-48 overflow-hidden rounded-xl xl:w-56">
+                      <img
+                        src={image}
+                        alt={title}
+                        className="h-full w-full object-cover"
+                        style={{ minHeight: "220px" }}
+                      />
                     </div>
                   </div>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+                </div>
+              </section>
+            ))}
 
-        {/* Bottom CTA */}
-        <div className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-8 text-center dark:border-amber-900/40 dark:bg-amber-900/10">
-          <p className="mb-2 font-serif text-xl font-semibold text-amber-900 dark:text-amber-400">
-            Not sure what to book?
-          </p>
-          <p className="mb-6 text-gray-600 dark:text-neutral-400">
-            Give us a call and we'll help you find the perfect service.
-          </p>
-          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="https://booking.gocheckin.net/v2/19988?social=website"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-amber-900 px-8 py-3 text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
-            >
-              <FiCalendar size={16} />
-              Book Online
-            </a>
-            <a
-              href="tel:+15302269462"
-              className="text-sm font-medium text-amber-900 underline hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300"
-            >
-              (530) 226-9462
-            </a>
+            {/* Add-Ons Section */}
+            <section id="addons">
+              <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
+                <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                  Add-Ons
+                </h2>
+                <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
+                  Enhancements
+                </span>
+              </div>
+              <ul className="divide-y divide-neutral-100 dark:divide-neutral-800/60">
+                {addOns.map((addon) => (
+                  <li
+                    key={addon.name}
+                    className="flex items-start justify-between gap-6 py-5"
+                  >
+                    <div className="flex-1">
+                      <h3 className="mb-1 font-serif text-base font-medium text-gray-900 dark:text-neutral-100">
+                        {addon.name}
+                      </h3>
+                      <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                        {addon.description}
+                      </p>
+                    </div>
+                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                      {addon.price ?? "—"}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            {/* Bottom CTA */}
+            <div className="border-t border-neutral-100 pt-12 text-center dark:border-neutral-800">
+              <p className="mb-1 font-serif text-xl text-gray-800 dark:text-neutral-200">
+                Not sure what to choose?
+              </p>
+              <p className="mb-7 text-sm text-gray-400 dark:text-neutral-500">
+                We're happy to help you find the perfect service.
+              </p>
+              <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <a
+                  href="https://booking.gocheckin.net/v2/19988?social=website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg bg-amber-900 px-8 py-3 text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
+                >
+                  <FiCalendar size={14} />
+                  Book Online
+                </a>
+                <a
+                  href="tel:+15302269462"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 underline-offset-4 hover:text-amber-800 hover:underline dark:text-neutral-500 dark:hover:text-amber-400"
+                >
+                  <FiPhone size={14} />
+                  (530) 226-9462
+                </a>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
