@@ -255,9 +255,16 @@ const ServicesPage = () => {
   const [openItems, setOpenItems] = useState<Set<string>>(defaultOpen);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
 
+  const allSectionIds = [
+    ...categories.map(({ id }) => id),
+    "waxingServices",
+    "nailEnhancements",
+    "addons",
+  ];
+
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
-    categories.forEach(({ id }) => {
+    allSectionIds.forEach((id) => {
       const el = sectionRefs.current[id];
       if (!el) return;
       const obs = new IntersectionObserver(
@@ -273,7 +280,7 @@ const ServicesPage = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    sectionRefs.current[id]?.scrollIntoView({
+    (sectionRefs.current[id] ?? document.getElementById(id))?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -333,42 +340,29 @@ const ServicesPage = () => {
                   </span>
                 </button>
               ))}
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("waxingServices")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
-                className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
-              >
-                <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
-                  Waxing
-                </span>
-              </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("nailEnhancements")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
-                className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
-              >
-                <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
-                  Nail Enhancements
-                </span>
-              </button>
-              <button
-                onClick={() =>
-                  document
-                    .getElementById("addons")
-                    ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                }
-                className="group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
-              >
-                <span className="text-sm font-semibold tracking-wide text-gray-500 transition-colors group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300">
-                  Additional Services
-                </span>
-              </button>
+              {[
+                { id: "waxingServices", label: "Waxing" },
+                { id: "nailEnhancements", label: "Nail Enhancements" },
+                { id: "addons", label: "Additional Services" },
+              ].map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => scrollToSection(id)}
+                  className={`group flex w-full flex-col items-start rounded-lg px-3 py-2.5 text-left transition-all ${
+                    activeId === id
+                      ? "bg-amber-50 dark:bg-amber-900/15"
+                      : "hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
+                  }`}
+                >
+                  <span className={`text-sm font-semibold tracking-wide transition-colors ${
+                    activeId === id
+                      ? "text-amber-900 dark:text-amber-400"
+                      : "text-gray-500 group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300"
+                  }`}>
+                    {label}
+                  </span>
+                </button>
+              ))}
 
               <div className="border-t border-neutral-100 pt-6 dark:border-neutral-800">
                 <a
@@ -396,7 +390,7 @@ const ServicesPage = () => {
               >
                 {/* Section title */}
                 <div className="mb-4 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
-                  <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                  <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                     {title}
                   </h2>
                   <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
@@ -448,7 +442,7 @@ const ServicesPage = () => {
                               <div className="flex-1 min-w-0">
                                 <div className="flex flex-wrap items-center gap-2">
                                   <h3
-                                    className={`font-serif text-base font-medium transition-colors ${
+                                    className={`text-base font-semibold transition-colors ${
                                       isOpen
                                         ? "text-amber-900 dark:text-amber-400"
                                         : "text-gray-900 group-hover:text-amber-900 dark:text-neutral-100 dark:group-hover:text-amber-400"
@@ -466,7 +460,7 @@ const ServicesPage = () => {
                                 <div
                                   className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "mt-2 max-h-40 opacity-100" : "max-h-0 opacity-0"}`}
                                 >
-                                  <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                                  <p className="text-base leading-relaxed text-gray-700 dark:text-neutral-300">
                                     {item.description}
                                   </p>
                                 </div>
@@ -474,10 +468,10 @@ const ServicesPage = () => {
 
                               {/* Prices */}
                               <div className="flex shrink-0 items-start gap-6">
-                                <span className="w-12 text-center font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                                <span className="w-12 text-center text-base font-medium text-gray-700 dark:text-neutral-300">
                                   {item.basePrice ?? "—"}
                                 </span>
-                                <span className="w-12 text-center font-serif text-sm font-medium text-amber-700 dark:text-amber-500">
+                                <span className="w-12 text-center text-base font-medium text-amber-700 dark:text-amber-500">
                                   {item.gelPrice ?? "—"}
                                 </span>
                               </div>
@@ -503,9 +497,9 @@ const ServicesPage = () => {
               </section>
             ))}
             {/* Waxing Section */}
-            <section id="waxingServices">
+            <section id="waxingServices" ref={(el) => { sectionRefs.current["waxingServices"] = el; }}>
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
-                <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                   Waxing
                 </h2>
                 <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600"></span>
@@ -517,17 +511,17 @@ const ServicesPage = () => {
                     className="flex items-start justify-between gap-6 py-5"
                   >
                     <div className="flex-1">
-                      <h3 className="mb-1 font-serif text-base font-medium text-gray-900 dark:text-neutral-100">
+                      <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-neutral-100">
                         {waxingService.name}
                       </h3>
-                      <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                      <p className="text-base leading-relaxed text-gray-700 dark:text-neutral-300">
                         {waxingService.description}
                       </p>
                     </div>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {waxingService.price1 ?? "—"}
                     </span>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {waxingService.price2 ?? "—"}
                     </span>
                   </li>
@@ -536,9 +530,9 @@ const ServicesPage = () => {
             </section>
 
             {/* Nail Enhancements Section */}
-            <section id="nailEnhancements">
+            <section id="nailEnhancements" ref={(el) => { sectionRefs.current["nailEnhancements"] = el; }}>
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
-                <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                   Nail Enhancements
                 </h2>
                 <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
@@ -552,20 +546,20 @@ const ServicesPage = () => {
                     className="flex items-start justify-between gap-6 py-5"
                   >
                     <div className="flex-1">
-                      <h3 className="mb-1 font-serif text-base font-medium text-gray-900 dark:text-neutral-100">
+                      <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-neutral-100">
                         {nailEnhancement.name}
                       </h3>
-                      <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                      <p className="text-base leading-relaxed text-gray-700 dark:text-neutral-300">
                         {nailEnhancement.description}
                       </p>
                     </div>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {nailEnhancement.price1 ?? "—"}
                     </span>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {nailEnhancement.price2 ?? "—"}
                     </span>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {nailEnhancement.price3 ?? "—"}
                     </span>
                   </li>
@@ -574,9 +568,9 @@ const ServicesPage = () => {
             </section>
 
             {/* Add-Ons Section */}
-            <section id="addons">
+            <section id="addons" ref={(el) => { sectionRefs.current["addons"] = el; }}>
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
-                <h2 className="font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                   Additional Services
                 </h2>
                 <span className="text-xs tracking-widest text-neutral-400 uppercase dark:text-neutral-600">
@@ -590,26 +584,48 @@ const ServicesPage = () => {
                     className="flex items-start justify-between gap-6 py-5"
                   >
                     <div className="flex-1">
-                      <h3 className="mb-1 font-serif text-base font-medium text-gray-900 dark:text-neutral-100">
+                      <h3 className="mb-1 text-base font-semibold text-gray-900 dark:text-neutral-100">
                         {addon.name}
                       </h3>
-                      <p className="text-sm leading-relaxed text-gray-400 dark:text-neutral-500">
+                      <p className="text-base leading-relaxed text-gray-700 dark:text-neutral-300">
                         {addon.description}
                       </p>
                     </div>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {addon.price1 ?? "—"}
                     </span>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {addon.price2 ?? "—"}
                     </span>
-                    <span className="shrink-0 pt-0.5 font-serif text-sm font-medium text-gray-700 dark:text-neutral-300">
+                    <span className="shrink-0 pt-0.5 text-base font-medium text-gray-700 dark:text-neutral-300">
                       {addon.price3 ?? "—"}
                     </span>
                   </li>
                 ))}
               </ul>
             </section>
+
+            {/* Waxing Notice */}
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-900/40 dark:bg-amber-900/10">
+              <div className="mb-4 flex items-start gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-400">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <h3 className="text-base font-semibold text-amber-900 dark:text-amber-400">
+                  Important Waxing Notice
+                </h3>
+              </div>
+              <div className="space-y-4 text-base leading-relaxed text-gray-700 dark:text-neutral-300">
+                <div>
+                  <p className="mb-1 font-semibold text-gray-800 dark:text-neutral-200">Note Before Waxing:</p>
+                  <p>Unfortunately, we cannot perform waxing services for customers who are taking Accutane, Retina-A, or antibiotics due to increased skin sensitivity caused by these medications.</p>
+                </div>
+                <div>
+                  <p className="mb-1 font-semibold text-gray-800 dark:text-neutral-200">Warning:</p>
+                  <p>Medical complications may arise if waxing is performed within 24 hours of treatment. Failure to follow this guideline may cause skin burning and irritation.</p>
+                </div>
+              </div>
+            </div>
 
             {/* Bottom CTA */}
             <div className="border-t border-neutral-100 pt-12 text-center dark:border-neutral-800">
