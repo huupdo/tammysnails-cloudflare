@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import { FiCalendar, FiPhone, FiChevronDown } from "react-icons/fi";
 
 interface ServiceItem {
@@ -251,9 +252,24 @@ const defaultOpen = new Set<string>(
 );
 
 const ServicesPage = () => {
+  const location = useLocation();
   const [activeId, setActiveId] = useState(categories[0].id);
   const [openItems, setOpenItems] = useState<Set<string>>(defaultOpen);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  // Scroll to hash section on mount or when hash changes
+  useEffect(() => {
+    const hash = location.hash.slice(1);
+    if (!hash) return;
+    const timer = setTimeout(() => {
+      (sectionRefs.current[hash] ?? document.getElementById(hash))?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+      setActiveId(hash);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [location.hash]);
 
   const allSectionIds = [
     ...categories.map(({ id }) => id),

@@ -1,6 +1,6 @@
 // src/App.tsx
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Routes,
   Route,
@@ -456,6 +456,26 @@ function MainPage() {
   const location = useLocation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = 5;
+  const serviceRowRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    serviceRowRefs.current.forEach((row) => {
+      if (!row) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            obs.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.15 },
+      );
+      obs.observe(row);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
 
   // Handle cross-route scroll requests (e.g. from Policy page navbar clicks)
   useEffect(() => {
@@ -554,21 +574,72 @@ function MainPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
-              <ServiceCard title="Manicures" image="/photos/nail 1.webp" />
+          <div className="space-y-8">
+            {/* Row 1 */}
+            <div
+              className="service-row grid grid-cols-1 gap-8 md:grid-cols-3"
+              ref={(el) => {
+                serviceRowRefs.current[0] = el;
+              }}
+            >
+              {[
+                {
+                  title: "Manicures",
+                  image: "/photos/deluxe manicure service.webp",
+                  href: "/services#manicures",
+                },
+                {
+                  title: "Pedicures",
+                  image: "/photos/hot stone pedicure.webp",
+                  href: "/services#pedicures",
+                },
+                {
+                  title: "Kids' Services",
+                  image: "/photos/kids nails.webp",
+                  href: "/services#kids",
+                },
+              ].map(({ title, image, href }) => (
+                <Link
+                  key={title}
+                  to={href}
+                  className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50"
+                >
+                  <ServiceCard title={title} image={image} />
+                </Link>
+              ))}
             </div>
-            <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
-              <ServiceCard title="Pedicure" image="/photos/pedicure.webp" />
-            </div>
-            <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
-              <ServiceCard title="Waxing" image="/photos/eyebrow.webp" />
-            </div>
-            <div className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50">
-              <ServiceCard
-                title="Kids' Services"
-                image="/photos/kids nails.webp"
-              />
+            {/* Row 2 */}
+            <div
+              className="service-row grid grid-cols-1 gap-8 md:grid-cols-3"
+              ref={(el) => {
+                serviceRowRefs.current[1] = el;
+              }}
+            >
+              {[
+                {
+                  title: "Waxing",
+                  image: "/photos/waxing eyebrow.webp",
+                  href: "/services#waxingServices",
+                },
+                {
+                  title: "Nail Enhancements",
+                  image: "/photos/Elegant_Nail_Art_Ideas.webp",
+                  href: "/services#nailEnhancements",
+                },
+                {
+                  title: "Additional Services",
+                  image: "/photos/add on.webp",
+                  href: "/services#addons",
+                },
+              ].map(({ title, image, href }) => (
+                <Link
+                  key={title}
+                  to={href}
+                  className="grid grid-rows-[1fr_auto] rounded-2xl border border-neutral-200/70 bg-white/70 p-2 shadow-xl ring-1 ring-neutral-200/50 transition-shadow duration-300 hover:shadow-2xl dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50"
+                >
+                  <ServiceCard title={title} image={image} />
+                </Link>
+              ))}
             </div>
           </div>
         </div>

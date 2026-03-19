@@ -1,5 +1,31 @@
 @import "tailwindcss";
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-row > * {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.service-row.in-view > *:nth-child(1) {
+  animation: fadeUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
+}
+.service-row.in-view > *:nth-child(2) {
+  animation: fadeUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.12s forwards;
+}
+.service-row.in-view > *:nth-child(3) {
+  animation: fadeUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.24s forwards;
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
