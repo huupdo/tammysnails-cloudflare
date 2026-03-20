@@ -62,18 +62,6 @@ const categories: ServiceCategory[] = [
         basePrice: "$35",
         gelPrice: "$45",
       },
-      {
-        name: "Manicure - French",
-        description: "",
-        basePrice: "$27",
-        gelPrice: "",
-      },
-      {
-        name: "Manicure - Shellac + Removal",
-        description: "",
-        basePrice: "$25",
-        gelPrice: "",
-      },
     ],
   },
   {
@@ -110,12 +98,6 @@ const categories: ServiceCategory[] = [
         description:
           "Deluxe Pedicure plus 10-minute massage with heated rocks to reduce fatigue.",
         basePrice: "$65|$75",
-        gelPrice: "",
-      },
-      {
-        name: "Sugar Massage Pedicure",
-        description: "",
-        basePrice: "$37",
         gelPrice: "",
       },
     ],
@@ -196,8 +178,8 @@ const nailEnhancements: NailEnhancement[] = [
     name: "Dipping powder | White tip",
     description: "",
     price1: "",
-    price2: "$45",
-    price3: "$55",
+    price2: "$50",
+    price3: "$60",
   },
 ];
 
@@ -262,7 +244,9 @@ const ServicesPage = () => {
     const hash = location.hash.slice(1);
     if (!hash) return;
     const timer = setTimeout(() => {
-      (sectionRefs.current[hash] ?? document.getElementById(hash))?.scrollIntoView({
+      (
+        sectionRefs.current[hash] ?? document.getElementById(hash)
+      )?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -370,11 +354,13 @@ const ServicesPage = () => {
                       : "hover:bg-neutral-50 dark:hover:bg-neutral-900/50"
                   }`}
                 >
-                  <span className={`text-sm font-semibold tracking-wide transition-colors ${
-                    activeId === id
-                      ? "text-amber-900 dark:text-amber-400"
-                      : "text-gray-500 group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300"
-                  }`}>
+                  <span
+                    className={`text-sm font-semibold tracking-wide transition-colors ${
+                      activeId === id
+                        ? "text-amber-900 dark:text-amber-400"
+                        : "text-gray-500 group-hover:text-gray-800 dark:text-neutral-500 dark:group-hover:text-neutral-300"
+                    }`}
+                  >
                     {label}
                   </span>
                 </button>
@@ -513,7 +499,12 @@ const ServicesPage = () => {
               </section>
             ))}
             {/* Waxing Section */}
-            <section id="waxingServices" ref={(el) => { sectionRefs.current["waxingServices"] = el; }}>
+            <section
+              id="waxingServices"
+              ref={(el) => {
+                sectionRefs.current["waxingServices"] = el;
+              }}
+            >
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                   Waxing
@@ -546,7 +537,12 @@ const ServicesPage = () => {
             </section>
 
             {/* Nail Enhancements Section */}
-            <section id="nailEnhancements" ref={(el) => { sectionRefs.current["nailEnhancements"] = el; }}>
+            <section
+              id="nailEnhancements"
+              ref={(el) => {
+                sectionRefs.current["nailEnhancements"] = el;
+              }}
+            >
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                   Nail Enhancements
@@ -584,7 +580,12 @@ const ServicesPage = () => {
             </section>
 
             {/* Add-Ons Section */}
-            <section id="addons" ref={(el) => { sectionRefs.current["addons"] = el; }}>
+            <section
+              id="addons"
+              ref={(el) => {
+                sectionRefs.current["addons"] = el;
+              }}
+            >
               <div className="mb-2 flex items-baseline gap-4 border-b border-neutral-100 pb-4 dark:border-neutral-800">
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-neutral-100">
                   Additional Services
@@ -624,8 +625,19 @@ const ServicesPage = () => {
             {/* Waxing Notice */}
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-900/40 dark:bg-amber-900/10">
               <div className="mb-4 flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-400">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="mt-0.5 h-5 w-5 shrink-0 text-amber-700 dark:text-amber-400"
+                >
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                  <line x1="12" y1="9" x2="12" y2="13" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
                 <h3 className="text-base font-semibold text-amber-900 dark:text-amber-400">
                   Important Waxing Notice
@@ -633,12 +645,25 @@ const ServicesPage = () => {
               </div>
               <div className="space-y-4 text-base leading-relaxed text-gray-700 dark:text-neutral-300">
                 <div>
-                  <p className="mb-1 font-semibold text-gray-800 dark:text-neutral-200">Note Before Waxing:</p>
-                  <p>Unfortunately, we cannot perform waxing services for customers who are taking Accutane, Retina-A, or antibiotics due to increased skin sensitivity caused by these medications.</p>
+                  <p className="mb-1 font-semibold text-gray-800 dark:text-neutral-200">
+                    Note Before Waxing:
+                  </p>
+                  <p>
+                    Unfortunately, we cannot perform waxing services for
+                    customers who are taking Accutane, Retina-A, or antibiotics
+                    due to increased skin sensitivity caused by these
+                    medications.
+                  </p>
                 </div>
                 <div>
-                  <p className="mb-1 font-semibold text-gray-800 dark:text-neutral-200">Warning:</p>
-                  <p>Medical complications may arise if waxing is performed within 24 hours of treatment. Failure to follow this guideline may cause skin burning and irritation.</p>
+                  <p className="mb-1 font-semibold text-gray-800 dark:text-neutral-200">
+                    Warning:
+                  </p>
+                  <p>
+                    Medical complications may arise if waxing is performed
+                    within 24 hours of treatment. Failure to follow this
+                    guideline may cause skin burning and irritation.
+                  </p>
                 </div>
               </div>
             </div>
