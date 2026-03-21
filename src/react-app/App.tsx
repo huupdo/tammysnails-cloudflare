@@ -15,6 +15,7 @@ import { FiPhone, FiMapPin, FiClock, FiMail, FiCalendar } from "react-icons/fi";
 import { GrInstagram, GrFacebookOption, GrGoogle } from "react-icons/gr";
 import PolicyPage from "./policy";
 import ServicesPage from "./services";
+import GalleryPage from "./gallery";
 
 // Reusable Service Card Component
 interface ServiceCardProps {
@@ -99,7 +100,7 @@ function Navbar() {
             </button>
             <button
               className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
-              onClick={() => scrollTo("gallery")}
+              onClick={() => { setIsMenuOpen(false); navigate("/gallery"); }}
             >
               Gallery
             </button>
@@ -171,7 +172,7 @@ function Navbar() {
             </button>
             <button
               className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
-              onClick={() => scrollTo("gallery")}
+              onClick={() => { setIsMenuOpen(false); navigate("/gallery"); }}
             >
               Gallery
             </button>
@@ -454,8 +455,6 @@ function Layout() {
 // Main Page — content sections only, no nav/footer
 function MainPage() {
   const location = useLocation();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 5;
   const serviceRowRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -491,17 +490,6 @@ function MainPage() {
     }
   }, [location.state]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  const goToSlide = (index: number) => setCurrentSlide(index);
 
   return (
     <div className="bg-white text-gray-800 antialiased dark:bg-neutral-950 dark:text-neutral-100">
@@ -681,116 +669,66 @@ function MainPage() {
               </a>
             </div>
           </div>
-          <div className="relative">
-            <div className="overflow-hidden rounded-2xl border border-neutral-200 shadow-2xl dark:border-neutral-800">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-              >
-                <div className="relative min-w-full">
-                  <img
-                    alt="Gallery Image 1"
-                    src="/photos/gallery 1.webp"
-                    className="h-100 w-full object-cover md:h-150"
-                  />
-                </div>
-                <div className="relative min-w-full">
-                  <img
-                    alt="Gallery Image 2"
-                    src="/photos/gallery 2.webp"
-                    className="h-100 w-full object-cover md:h-150"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/60 via-transparent to-transparent"></div>
-                </div>
-                <div className="relative min-w-full">
-                  <img
-                    alt="Gallery Image 3"
-                    src="/photos/gallery 3.webp"
-                    className="h-100 w-full object-cover md:h-150"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative min-w-full">
-                  <img
-                    alt="Gallery Image 4"
-                    src="/photos/gallery 4.webp"
-                    className="hfull object-cover md:h-150"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="relative min-w-full">
-                  <img
-                    alt="Gallery Image 5"
-                    src="/photos/gallery 5.webp"
-                    className="h-full object-center md:h-150"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-            <button
-              onClick={prevSlide}
-              className="absolute top-1/2 left-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:border-neutral-700 dark:bg-neutral-800/90 dark:hover:bg-neutral-800"
+
+          <div className="space-y-8">
+            {/* Row 1 */}
+            <div
+              className="service-row grid grid-cols-1 gap-8 md:grid-cols-3"
+              ref={(el) => { serviceRowRefs.current[2] = el; }}
             >
-              <svg
-                className="h-6 w-6 text-gray-800 dark:text-neutral-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 19l-7-7 7-7"
-                ></path>
-              </svg>
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute top-1/2 right-4 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white/90 shadow-lg backdrop-blur-sm transition-all hover:scale-110 hover:bg-white dark:border-neutral-700 dark:bg-neutral-800/90 dark:hover:bg-neutral-800"
-            >
-              <svg
-                className="h-6 w-6 text-gray-800 dark:text-neutral-200"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5l7 7-7 7"
-                ></path>
-              </svg>
-            </button>
-            <div className="mt-6 flex justify-center gap-2">
-              {[...Array(totalSlides)].map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`h-3 w-3 rounded-full transition-all ${currentSlide === index ? "bg-stone-700 dark:bg-stone-400" : "bg-stone-300 dark:bg-stone-700"}`}
-                />
+              {[
+                { src: "/photos/gallery 1.webp", alt: "Nail art design" },
+                { src: "/photos/gallery 2.webp", alt: "Manicure service" },
+                { src: "/photos/gallery 3.webp", alt: "Nail art design" },
+              ].map(({ src, alt }) => (
+                <div key={src} className="overflow-hidden rounded-2xl border border-neutral-200/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:ring-neutral-700/50">
+                  <img src={src} alt={alt} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105" />
+                </div>
               ))}
             </div>
+            {/* Row 2 */}
+            <div
+              className="service-row grid grid-cols-1 gap-8 md:grid-cols-3"
+              ref={(el) => { serviceRowRefs.current[3] = el; }}
+            >
+              {[
+                { src: "/photos/gallery 4.webp", alt: "Pedicure service" },
+                { src: "/photos/gallery 5.webp", alt: "Nail design" },
+                { src: "/photos/gallery 6.webp", alt: "Nail art" },
+              ].map(({ src, alt }) => (
+                <div key={src} className="overflow-hidden rounded-2xl border border-neutral-200/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:ring-neutral-700/50">
+                  <img src={src} alt={alt} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              to="/gallery"
+              className="inline-flex items-center gap-2 rounded-lg border border-neutral-200 px-8 py-3 text-sm font-bold tracking-widest text-stone-700 uppercase transition hover:border-amber-800 hover:text-amber-900 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-amber-700 dark:hover:text-amber-400"
+            >
+              View Full Gallery
+            </Link>
           </div>
         </div>
       </section>
 
       {/* about us */}
       <section
-        className="relative overflow-hidden bg-neutral-50 py-8 dark:bg-neutral-900/50"
+        className="relative overflow-hidden bg-neutral-50 py-20 dark:bg-neutral-900/50"
         id="aboutus"
       >
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="mb-16 text-center">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
             <h2 className="mb-4 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
               About Us
             </h2>
           </div>
-          <div className="grid grid-cols-1 items-start gap-12">
-            <div className="space-y-5 text-gray-700 dark:text-neutral-300">
+
+          <div className="grid grid-rows-[1fr_auto] overflow-hidden rounded-2xl border border-neutral-200/70 bg-white/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:bg-neutral-950 dark:ring-neutral-700/50 md:grid-cols-2 md:grid-rows-1">
+            {/* Description — left */}
+            <div className="flex flex-col justify-center space-y-5 p-8 text-gray-700 dark:text-neutral-300 lg:p-12">
               <p className="text-lg font-semibold text-amber-900 dark:text-amber-400">
                 Welcome to Tammy's Nails — where great nails meet genuine care.
               </p>
@@ -805,8 +743,7 @@ function MainPage() {
                 Our skilled nail technicians bring both talent and passion to
                 every service, whether that's a classic manicure, a spa
                 pedicure, gel or acrylic nails, or a custom nail art design
-                you've been dreaming about. We take the time to listen to what
-                you want and make sure you leave loving the results.
+                you've been dreaming about.
               </p>
               <div>
                 <p className="mb-3 text-base font-semibold text-gray-800 dark:text-neutral-200">
@@ -827,15 +764,18 @@ function MainPage() {
                   ))}
                 </ul>
               </div>
-              <p className="text-base leading-relaxed">
-                At Tammy's Nails, we believe that taking care of yourself should
-                feel effortless and enjoyable. We're proud to serve the Redding
-                community and honored every time a client chooses to spend their
-                time with us.
-              </p>
               <p className="text-base font-medium italic text-amber-900 dark:text-amber-400">
                 Come see us — we'd love to take care of you.
               </p>
+            </div>
+
+            {/* Image — right */}
+            <div className="aspect-4/5 overflow-hidden md:aspect-auto">
+              <img
+                src="/photos/tammys nails art 1.webp"
+                alt="Tammy's Nails art"
+                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+              />
             </div>
           </div>
         </div>
@@ -851,6 +791,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<MainPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/policy" element={<PolicyPage />} />
       </Route>
     </Routes>
