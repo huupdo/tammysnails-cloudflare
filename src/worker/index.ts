@@ -10,19 +10,25 @@ const CACHE_TTL = 6 * 60 * 60; // 6 hours
 const app = new Hono<{ Bindings: AppEnv }>();
 
 app.get("/api/reviews", async (c) => {
-  // Try cache first (not available in local dev, so wrap in try/catch)
+  const placesUrl = `https://places.googleapis.com/v1/places/${PLACE_ID}?languageCode=en`;
+  const placesHeaders = {
+    "X-Goog-Api-Key": c.env.GOOGLE_PLACES_API_KEY,
+    "X-Goog-FieldMask": "rating,userRatingCount,reviews",
+  };
+
   try {
     const cache = caches.default;
     const cacheKey = "https://cache.internal/tammysnails-reviews";
     const cached = await cache.match(cacheKey);
     if (cached) return cached;
 
-    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=rating,userRatingCount,reviews&key=${c.env.GOOGLE_PLACES_API_KEY}&languageCode=en`;
-    const res = await fetch(url);
-    if (!res.ok) return c.json({ error: "Failed to fetch reviews" }, 500);
+    const res = await fetch(placesUrl, { headers: placesHeaders });
+    if (!res.ok) {
+      const detail = await res.text();
+      return c.json({ error: "Failed to fetch reviews", status: res.status, detail }, 500);
+    }
 
     const data = await res.json() as Record<string, unknown>;
-
     const response = new Response(JSON.stringify(data), {
       headers: {
         "Content-Type": "application/json",
@@ -33,10 +39,12 @@ app.get("/api/reviews", async (c) => {
     c.executionCtx.waitUntil(cache.put(cacheKey, response.clone()));
     return response;
   } catch {
-    // Fallback for local dev where cache API may be unavailable
-    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?fields=rating,userRatingCount,reviews&key=${c.env.GOOGLE_PLACES_API_KEY}&languageCode=en`;
-    const res = await fetch(url);
-    if (!res.ok) return c.json({ error: "Failed to fetch reviews" }, 500);
+    // Fallback for local dev
+    const res = await fetch(placesUrl, { headers: placesHeaders });
+    if (!res.ok) {
+      const detail = await res.text();
+      return c.json({ error: "Failed to fetch reviews", status: res.status, detail }, 500);
+    }
     const data = await res.json();
     return c.json(data);
   }
