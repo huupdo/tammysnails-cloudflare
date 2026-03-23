@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import { FiCalendar, FiPhone, FiChevronDown } from "react-icons/fi";
+import { FiPhone, FiChevronDown } from "react-icons/fi";
 
 interface ServiceItem {
   name: string;
@@ -366,6 +366,7 @@ const ServicesPage = () => {
                 </button>
               ))}
 
+              {/* Book Now hidden — booking app is down
               <div className="border-t border-neutral-100 pt-6 dark:border-neutral-800">
                 <a
                   href="https://booking.gocheckin.net/v2/19988?social=website"
@@ -377,6 +378,7 @@ const ServicesPage = () => {
                   Book Now
                 </a>
               </div>
+              */}
             </nav>
           </aside>
 
@@ -677,6 +679,7 @@ const ServicesPage = () => {
                 We're happy to help you find the perfect service.
               </p>
               <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                {/* Book Online hidden — booking app is down
                 <a
                   href="https://booking.gocheckin.net/v2/19988?social=website"
                   target="_blank"
@@ -686,6 +689,7 @@ const ServicesPage = () => {
                   <FiCalendar size={14} />
                   Book Online
                 </a>
+                */}
                 <a
                   href="tel:+15302269462"
                   className="inline-flex items-center gap-2 text-sm font-medium text-gray-400 underline-offset-4 hover:text-amber-800 hover:underline dark:text-neutral-500 dark:hover:text-amber-400"

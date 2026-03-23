@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
-import { FiPhone, FiMapPin, FiClock, FiMail, FiCalendar } from "react-icons/fi";
+import { FiPhone, FiMapPin, FiClock, FiMail } from "react-icons/fi";
 import { GrInstagram, GrFacebookOption, GrGoogle } from "react-icons/gr";
 import PolicyPage from "./policy";
 import ServicesPage from "./services";
@@ -120,6 +120,7 @@ function Navbar() {
           </div>
 
           <div className="flex flex-1 items-center justify-end gap-4">
+            {/* Book button hidden — booking app is down
             <a
               href="https://booking.gocheckin.net/v2/19988?social=website"
               target="_blank"
@@ -129,6 +130,7 @@ function Navbar() {
               <FiCalendar className="inline-block mr-2" />
               Book
             </a>
+            */}
             <a
               href="tel:+15302269462"
               className="hidden rounded-lg bg-amber-900 px-6 py-2 text-md font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700 md:block"
@@ -193,6 +195,7 @@ function Navbar() {
               Policy
             </button>
             <div className="flex w-full gap-3 px-4 pt-2">
+              {/* Book button hidden — booking app is down
               <a
                 href="https://booking.gocheckin.net/v2/19988?social=website"
                 target="_blank"
@@ -203,6 +206,7 @@ function Navbar() {
                 <FiCalendar className="inline-block mr-2" />
                 Book
               </a>
+              */}
               <a
                 href="tel:+15302269462"
                 className="flex-1 rounded-lg bg-amber-900 px-4 py-2 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"
@@ -360,6 +364,7 @@ function Footer() {
                     Policy
                   </button>
                 </li>
+                {/* Book Appointment hidden — booking app is down
                 <li>
                   <a
                     href="https://booking.gocheckin.net/v2/19988?social=website"
@@ -370,6 +375,7 @@ function Footer() {
                     Book Appointment
                   </a>
                 </li>
+                */}
               </ul>
             </nav>
           </div>
@@ -527,6 +533,7 @@ function MainPage() {
             leaves you feeling your absolute best.
           </p>
           <div className="flex flex-col gap-4 sm:flex-row">
+            {/* Book button hidden — booking app is down
             <a
               href="https://booking.gocheckin.net/v2/19988?social=website"
               target="_blank"
@@ -536,6 +543,7 @@ function MainPage() {
               <FiCalendar className="inline-block mr-2" />
               Book
             </a>
+            */}
             <a
               href="tel:+15302269462"
               className="rounded-lg bg-amber-900 px-8 py-3 text-center text-sm font-bold tracking-widest text-white uppercase transition hover:bg-amber-800 dark:bg-amber-800 dark:hover:bg-amber-700"

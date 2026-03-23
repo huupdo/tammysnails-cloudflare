@@ -1,5 +1,4 @@
 import {
-  FiCalendar,
   FiCheckCircle,
   FiXCircle,
   FiAlertCircle,
@@ -48,6 +47,7 @@ const PolicyPage = () => {
                 </li>
               ))}
             </ul>
+            {/* Book an Appointment hidden — booking app is down
             <div className="mt-6">
               <a
                 href="https://booking.gocheckin.net/v2/19988?social=website"
@@ -59,6 +59,7 @@ const PolicyPage = () => {
                 Book an Appointment
               </a>
             </div>
+            */}
           </section>
 
           {/* Cancellation */}
