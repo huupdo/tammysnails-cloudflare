@@ -23,10 +23,7 @@ app.get("/api/reviews", async (c) => {
     if (cached) return cached;
 
     const res = await fetch(placesUrl, { headers: placesHeaders });
-    if (!res.ok) {
-      const detail = await res.text();
-      return c.json({ error: "Failed to fetch reviews", status: res.status, detail }, 500);
-    }
+    if (!res.ok) return c.json({ error: "Failed to fetch reviews" }, 500);
 
     const data = await res.json() as Record<string, unknown>;
     const response = new Response(JSON.stringify(data), {
@@ -41,10 +38,7 @@ app.get("/api/reviews", async (c) => {
   } catch {
     // Fallback for local dev
     const res = await fetch(placesUrl, { headers: placesHeaders });
-    if (!res.ok) {
-      const detail = await res.text();
-      return c.json({ error: "Failed to fetch reviews", status: res.status, detail }, 500);
-    }
+    if (!res.ok) return c.json({ error: "Failed to fetch reviews" }, 500);
     const data = await res.json();
     return c.json(data);
   }
