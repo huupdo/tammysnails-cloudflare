@@ -16,6 +16,7 @@ import { GrInstagram, GrFacebookOption, GrGoogle } from "react-icons/gr";
 import PolicyPage from "./policy";
 import ServicesPage from "./services";
 import GalleryPage from "./gallery";
+import GoogleReviews from "./reviews";
 
 // Reusable Service Card Component
 interface ServiceCardProps {
@@ -713,6 +714,8 @@ function MainPage() {
           </div>
         </div>
       </section>
+
+      <GoogleReviews />
 
       {/* about us */}
       <section
