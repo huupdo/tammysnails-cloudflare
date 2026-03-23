@@ -101,7 +101,10 @@ function Navbar() {
             </button>
             <button
               className="btn rounded-lg px-3 py-2 font-serif text-2xl font-medium text-stone-700 transition-colors hover:bg-amber-50 hover:text-amber-900 dark:text-stone-300 dark:hover:bg-amber-900/20 dark:hover:text-amber-400"
-              onClick={() => { setIsMenuOpen(false); navigate("/gallery"); }}
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/gallery");
+              }}
             >
               Gallery
             </button>
@@ -175,7 +178,10 @@ function Navbar() {
             </button>
             <button
               className="font-serif text-xl font-medium text-stone-700 transition-colors hover:text-amber-900 dark:text-stone-300 dark:hover:text-amber-400"
-              onClick={() => { setIsMenuOpen(false); navigate("/gallery"); }}
+              onClick={() => {
+                setIsMenuOpen(false);
+                navigate("/gallery");
+              }}
             >
               Gallery
             </button>
@@ -497,7 +503,6 @@ function MainPage() {
     }
   }, [location.state]);
 
-
   return (
     <div className="bg-white text-gray-800 antialiased dark:bg-neutral-950 dark:text-neutral-100">
       {/* hero section */}
@@ -657,24 +662,19 @@ function MainPage() {
                 href="https://www.instagram.com/tammy_nails_redding/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-stone-500 transition-colors hover:text-pink-600 dark:text-stone-400 dark:hover:text-pink-400"
+                className="flex items-center gap-2 rounded-lg border border-neutral-200 px-4 py-2 text-sm font-medium text-stone-600 transition hover:border-pink-400 hover:text-pink-600 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-pink-500 dark:hover:text-pink-400"
               >
-                <GrInstagram size={20} />
-                <span className="text-sm font-medium">Follow us</span>
+                <GrInstagram size={18} />
+                Instagram
               </a>
               <a
-                href="https://maps.app.goo.gl/z9JHS3Li9wNqWiZh6"
+                href="https://www.facebook.com/people/Tammys-Nails/61557275521215/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-stone-500 transition-colors hover:text-blue-600 dark:text-stone-400 dark:hover:text-blue-400"
+                className="flex items-center gap-2 rounded-lg border border-neutral-200 px-4 py-2 text-sm font-medium text-stone-600 transition hover:border-blue-500 hover:text-blue-600 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-blue-400 dark:hover:text-blue-400"
               >
-                <GrGoogle size={20} />
-                <div className="flex flex-col items-start leading-tight">
-                  <span className="text-sm font-medium">Review us</span>
-                  <span className="text-[10px]">
-                    4.4 <span className="text-yellow-500">★</span> (312 reviews)
-                  </span>
-                </div>
+                <GrFacebookOption size={18} />
+                Facebook
               </a>
             </div>
           </div>
@@ -683,30 +683,50 @@ function MainPage() {
             {/* Row 1 */}
             <div
               className="service-row grid grid-cols-1 gap-8 md:grid-cols-3"
-              ref={(el) => { serviceRowRefs.current[2] = el; }}
+              ref={(el) => {
+                serviceRowRefs.current[2] = el;
+              }}
             >
               {[
                 { src: "/photos/gallery 1.webp", alt: "Nail art design" },
                 { src: "/photos/gallery 2.webp", alt: "Manicure service" },
                 { src: "/photos/gallery 3.webp", alt: "Nail art design" },
               ].map(({ src, alt }) => (
-                <div key={src} className="overflow-hidden rounded-2xl border border-neutral-200/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:ring-neutral-700/50">
-                  <img src={src} alt={alt} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div
+                  key={src}
+                  className="overflow-hidden rounded-2xl border border-neutral-200/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:ring-neutral-700/50"
+                >
+                  <img
+                    src={src}
+                    alt={alt}
+                    loading="lazy"
+                    className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
               ))}
             </div>
             {/* Row 2 */}
             <div
               className="service-row grid grid-cols-1 gap-8 md:grid-cols-3"
-              ref={(el) => { serviceRowRefs.current[3] = el; }}
+              ref={(el) => {
+                serviceRowRefs.current[3] = el;
+              }}
             >
               {[
                 { src: "/photos/gallery 4.webp", alt: "Pedicure service" },
                 { src: "/photos/gallery 5.webp", alt: "Nail design" },
                 { src: "/photos/gallery 6.webp", alt: "Nail art" },
               ].map(({ src, alt }) => (
-                <div key={src} className="overflow-hidden rounded-2xl border border-neutral-200/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:ring-neutral-700/50">
-                  <img src={src} alt={alt} loading="lazy" className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div
+                  key={src}
+                  className="overflow-hidden rounded-2xl border border-neutral-200/70 shadow-xl ring-1 ring-neutral-200/50 dark:border-neutral-800/70 dark:ring-neutral-700/50"
+                >
+                  <img
+                    src={src}
+                    alt={alt}
+                    loading="lazy"
+                    className="aspect-square w-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
               ))}
             </div>
@@ -727,7 +747,7 @@ function MainPage() {
 
       {/* about us */}
       <section
-        className="relative overflow-hidden bg-neutral-50 py-20 dark:bg-neutral-900/50"
+        className="relative overflow-hidden bg-white py-20 dark:bg-neutral-950"
         id="aboutus"
       >
         <div className="mx-auto max-w-7xl px-6">
