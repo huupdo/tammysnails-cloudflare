@@ -9,27 +9,94 @@ interface GalleryPhoto {
 }
 
 const photos: GalleryPhoto[] = [
-  { src: "/photos/gallery 1.webp", alt: "Nail art design", category: "Nail Art" },
-  { src: "/photos/gallery 2.webp", alt: "Manicure service", category: "Manicures" },
-  { src: "/photos/gallery 3.webp", alt: "Nail art design", category: "Nail Art" },
-  { src: "/photos/gallery 4.webp", alt: "Pedicure service", category: "Pedicures" },
-  { src: "/photos/gallery 5.webp", alt: "Manicure service", category: "Manicures" },
-  { src: "/photos/gallery 6.webp", alt: "Nail art design", category: "Nail Art" },
-  { src: "/photos/nail 1.webp", alt: "Classic manicure", category: "Manicures" },
+  {
+    src: "/photos/gallery 1.webp",
+    alt: "Nail art design",
+    category: "Nail Art",
+  },
+  {
+    src: "/photos/gallery 2.webp",
+    alt: "Manicure service",
+    category: "Manicures",
+  },
+  {
+    src: "/photos/gallery 3.webp",
+    alt: "Nail art design",
+    category: "Nail Art",
+  },
+  {
+    src: "/photos/gallery 4.webp",
+    alt: "Pedicure service",
+    category: "Pedicures",
+  },
+  {
+    src: "/photos/gallery 5.webp",
+    alt: "Manicure service",
+    category: "Manicures",
+  },
+  {
+    src: "/photos/gallery 6.webp",
+    alt: "Nail art design",
+    category: "Nail Art",
+  },
+  {
+    src: "/photos/nail 1.webp",
+    alt: "Classic manicure",
+    category: "Manicures",
+  },
   { src: "/photos/nail 2.webp", alt: "Gel manicure", category: "Manicures" },
   { src: "/photos/nail 3.webp", alt: "Nail art", category: "Nail Art" },
   { src: "/photos/nail 4.webp", alt: "Manicure design", category: "Manicures" },
-  { src: "/photos/Elegant_Nail_Art_Ideas.webp", alt: "Elegant nail art", category: "Nail Art" },
-  { src: "/photos/deluxe manicure service.webp", alt: "Deluxe manicure", category: "Manicures" },
-  { src: "/photos/pedicure.webp", alt: "Pedicure service", category: "Pedicures" },
-  { src: "/photos/hot stone pedicure.webp", alt: "Hot stone pedicure", category: "Pedicures" },
-  { src: "/photos/kids nails.webp", alt: "Kids' nail service", category: "Kids" },
-  { src: "/photos/waxing eyebrow.webp", alt: "Eyebrow waxing", category: "Waxing & Brows" },
-  { src: "/photos/eyebrow.webp", alt: "Eyebrow shaping", category: "Waxing & Brows" },
-  { src: "/photos/lashes.webp", alt: "Lash service", category: "Waxing & Brows" },
+  {
+    src: "/photos/Elegant_Nail_Art_Ideas.webp",
+    alt: "Elegant nail art",
+    category: "Nail Art",
+  },
+  {
+    src: "/photos/deluxe manicure service.webp",
+    alt: "Deluxe manicure",
+    category: "Manicures",
+  },
+  {
+    src: "/photos/pedicure.webp",
+    alt: "Pedicure service",
+    category: "Pedicures",
+  },
+  {
+    src: "/photos/hot stone pedicure.webp",
+    alt: "Hot stone pedicure",
+    category: "Pedicures",
+  },
+  {
+    src: "/photos/kids nails.webp",
+    alt: "Kids' nail service",
+    category: "Kids",
+  },
+  {
+    src: "/photos/waxing eyebrow.webp",
+    alt: "Eyebrow waxing",
+    category: "Waxing & Brows",
+  },
+  {
+    src: "/photos/eyebrow.webp",
+    alt: "Eyebrow shaping",
+    category: "Waxing & Brows",
+  },
+  {
+    src: "/photos/lashes.webp",
+    alt: "Lash service",
+    category: "Waxing & Brows",
+  },
 ];
 
-const categories = ["All", "Manicures", "Pedicures", "Nail Art", "Waxing & Brows", "Kids"];
+const categories = [
+  "All",
+  "Manicures",
+  "Pedicures",
+  "Nail Art",
+  "Waxing & Brows",
+  "Kids",
+];
 
 const GalleryPage = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -39,15 +106,18 @@ const GalleryPage = () => {
     window.scrollTo({ top: 0 });
   }, []);
 
-  const filtered = activeCategory === "All"
-    ? photos
-    : photos.filter((p) => p.category === activeCategory);
+  const filtered =
+    activeCategory === "All"
+      ? photos
+      : photos.filter((p) => p.category === activeCategory);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
   const prev = useCallback(() => {
-    setLightboxIndex((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
+    setLightboxIndex((i) =>
+      i === null ? null : (i - 1 + filtered.length) % filtered.length,
+    );
   }, [filtered.length]);
 
   const next = useCallback(() => {
@@ -68,20 +138,22 @@ const GalleryPage = () => {
   // Lock body scroll when lightbox is open
   useEffect(() => {
     document.body.style.overflow = lightboxIndex !== null ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [lightboxIndex]);
 
   return (
     <div className="min-h-screen bg-white text-gray-800 antialiased dark:bg-neutral-950 dark:text-neutral-100">
       <main className="mx-auto max-w-7xl px-6 py-16">
-
         {/* Header */}
         <div className="mb-10 text-center">
           <h1 className="mb-3 font-serif text-4xl font-semibold text-gray-900 md:text-5xl dark:text-neutral-100">
             Our Work
           </h1>
-          <p className="mx-auto max-w-xl text-base leading-relaxed text-gray-500 dark:text-neutral-400">
-            A collection of nail art, manicures, pedicures, and more — straight from our salon.
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-gray-500 dark:text-neutral-400">
+            A collection of nail art, manicures, pedicures, and more — straight
+            from our salon.
           </p>
 
           {/* Social links */}
@@ -144,14 +216,19 @@ const GalleryPage = () => {
 
         {/* Empty state */}
         {filtered.length === 0 && (
-          <p className="py-20 text-center text-sm text-neutral-400">No photos in this category yet.</p>
+          <p className="py-20 text-center text-sm text-neutral-400">
+            No photos in this category yet.
+          </p>
         )}
 
         {/* Follow CTA */}
         <div className="mt-16 rounded-2xl border border-neutral-200 bg-neutral-50 p-8 text-center dark:border-neutral-800 dark:bg-neutral-900/50">
-          <p className="mb-1 font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">See more of our work</p>
+          <p className="mb-1 font-serif text-2xl font-semibold text-gray-900 dark:text-neutral-100">
+            See more of our work
+          </p>
           <p className="mb-5 text-sm text-gray-500 dark:text-neutral-400">
-            Follow us on Instagram and Facebook for our latest nail art, promotions, and inspiration.
+            Follow us on Instagram and Facebook for our latest nail art,
+            promotions, and inspiration.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
@@ -193,7 +270,10 @@ const GalleryPage = () => {
           {/* Prev */}
           <button
             className="absolute left-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-            onClick={(e) => { e.stopPropagation(); prev(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
           >
             <FiChevronLeft size={24} />
           </button>
@@ -209,7 +289,10 @@ const GalleryPage = () => {
           {/* Next */}
           <button
             className="absolute right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
-            onClick={(e) => { e.stopPropagation(); next(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
           >
             <FiChevronRight size={24} />
           </button>
